@@ -1,12 +1,12 @@
 <?php
-require_once 'CTRLRIndex.php';
+require_once 'CTRLR_AffichePatient.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
     <head>
         <meta charset="utf-8" />
-        <title>Exercice 2 - Partie 2</title>
+        <title>Exercice 3 - Partie 2</title>
         <!-- Bootstrap core CSS -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
         <!-- Material Design Bootstrap -->
@@ -17,49 +17,46 @@ require_once 'CTRLRIndex.php';
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <h1>PATIENTS</h1>
+        <h1>PATIENT</h1>
         <!-- NAV -->
-        <a href="liste-patients.php"><button type="button" class="btn btn-primary" >Retour liste patients</button></a>
         <div class="container">
             <div class="row">
                 <div class="col align-self-center">
+                    <?php if (!$idExist) { ?>
+                        <h1>Erreur, le patient n'existe pas !</h1>
+                        <div><a href="liste-patients.php" class="btn btn-primary">Retour à la liste des patients</a></div>
+                    <?php } else {
+                        ?>
                     <!-- Card -->
                     <div class="card">
-
-                        <!-- Card image -->
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
-
                         <!-- Card content -->
                         <div class="card-body">
-
-                            <?php foreach ($arraySinglePatient as $row) { ?>
                                 <!-- Title -->
-                                <h4 class="card-title"><a><?= $row->lastname ?> <?= $row->firstname ?></a></h4>
+                                <h4 class="card-title"><a><?= $arrayPatient->lastname ?> <?= $arrayPatient->firstname ?></a></h4>
                                 <!-- Text -->
                                 <ul class="list-group">
                                     <li class="list-group-item">
-                                        <div class="md-v-line"></div><i class="fas fa-laptop mr-4 pr-3"></i><p class="card-text">Nom : <?= $row->lastname ?></p>
+                                        <div class="md-v-line"></div><i class="fas fa-user-circle mr-4 pr-3"></i><p class="card-text">Nom : <?= $arrayPatient->lastname ?></p>
                                     </li>
                                     <li class="list-group-item">
-                                        <div class="md-v-line"></div><i class="fas fa-bomb mr-5"></i><p class="card-text">Prénom : <?= $row->firstname ?></p>
+                                        <div class="md-v-line"></div><i class="far fa-user-circle mr-5"></i><p class="card-text">Prénom : <?= $arrayPatient->firstname ?></p>
                                     </li>
                                     <li class="list-group-item">
-                                        <div class="md-v-line"></div><i class="fas fa-code mr-5"></i><p class="card-text">Adresse de messagerie : <?= $row->mail ?></p>
+                                        <div class="md-v-line"></div><i class="fas fa-at mr-5"></i><p class="card-text">Adresse de messagerie : <?= $arrayPatient->mail ?></p>
                                     </li>
                                     <li class="list-group-item">
-                                        <div class="md-v-line"></div><i class="far fa-gem mr-5"></i><p class="card-text">Date de naissance : <?= $row->birthdate ?></p>
+                                        <div class="md-v-line"></div><i class="fas fa-birthday-cake mr-5"></i><p class="card-text">Date de naissance : <?= date('d/m/Y', strtotime($arrayPatient->birthdate)) ?></p>
                                     </li>
                                     <li class="list-group-item">
-                                        <div class="md-v-line"></div><i class="fas fa-cogs mr-5"></i><p class="card-text">Numéro de téléphone : <?= $row->phone ?></p>
+                                        <div class="md-v-line"></div><i class="fas fa-phone mr-5"></i><p class="card-text">Numéro de téléphone : <?= $arrayPatient->phone ?></p>
                                     </li>
                                 </ul>
                                 <!-- Button -->
-                                <a href="liste-patients.php" class="btn btn-primary">Retour à la liste des patients</a>
-
-                            <?php } ?>
+                                <div><a href="liste-patients.php" class="btn btn-primary">Retour à la liste des patients</a><a href="modifier-patient.php?id=<?= $arrayPatient->id ?>"><button type="button" class="btn btn-secondary" >Modifier</button></a></div>
                         </div>
                     </div>
                     <!-- Card -->
+                    <?php } ?>
                 </div>
             </div>
         </div>

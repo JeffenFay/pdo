@@ -1,5 +1,5 @@
 <?php
-require_once 'CTRLRIndex.php';
+require_once 'CTRLR_AfficherTousLesPatients.php';
 ?>
 
 <!DOCTYPE html>
@@ -17,9 +17,9 @@ require_once 'CTRLRIndex.php';
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <h1>PATIENTS</h1>
+        <h1>MODIFIER PATIENT</h1>
         <!-- NAV -->
-        <a href="ajout-patient.php"><button type="button" class="btn btn-primary" >Retour saisie patient</button></a>
+        <a href="index.php"><button type="button" class="btn btn-primary" >Retour saisie patient</button></a>
         <div class="container">
             <div class="row">
                 <div class="col align-self-center">
@@ -35,8 +35,8 @@ require_once 'CTRLRIndex.php';
                             <?php foreach ($arrayPatients as $row) { ?>
                                 <tr>
                                     <th scope="row"> <?= $row->lastname ?> </th>
-                                    <td><?= $row->firstname ?></th>
-                                    <td><a href="profil-patient.php"><button type="button" class="btn btn-success" >Afficher</button></a><a href=""><button type="button" class="btn btn-secondary" >Modifier</button></a><a href=""><button type="button" class="btn btn-danger" >Supprimer</button></a></th>
+                                    <td><?= $row->firstname ?></td>
+                                    <td><a href="profil-patient.php?id=<?= $row->id ?>"><button type="button" class="btn btn-success" >Afficher</button></a><a href=""><button type="button" class="btn btn-danger" >Supprimer</button></a></th>
                                 </tr>
                             <?php } ?>
                         </tbody>

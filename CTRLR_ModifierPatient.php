@@ -3,8 +3,13 @@ require_once 'database.php';
 require_once 'patientsModel.php';
 // Instanciation de l'objet Hospital contenant les méthodes utilisées
 $patientsOBJ = new patients();
-$addSuccess = false;
-$arrayPatients = $patientsOBJ->displayPatients();
+$updateSuccess = false;
+// vérifie si l'id est passée en paramètre dans l'URL
+if (isset($_GET['id'])) {
+    $patientsOBJ->id = $_GET['id']; // affecte l'id de l'URL à l'attribut $id
+    $arrayProfilPatient = $patientsOBJ->displayInfoPatient(); // exécute la requête via la méthode de l'objet patient
+}
+
 
 // variable de récupération d'erreurs
 $arrayError = [];
@@ -78,8 +83,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     // VALIDER
     if (isset($_POST['submit']) && count($arrayError) == 0) {
-        $patientsOBJ->addPatient();
-        $addSuccess = true;
+        $patientsOBJ->updatePatient(); // exécute la méthode permettant la mise à jour du patient
+        $updateSuccess = true; // variable mise à true pour cacher le formulaire
     }
 }
 

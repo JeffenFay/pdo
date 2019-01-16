@@ -1,5 +1,5 @@
 <?php
-require_once 'CTRLR_AjoutPatient.php';
+require_once 'CTRLR_ModifierPatient.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -25,41 +25,41 @@ require_once 'CTRLR_AjoutPatient.php';
             <div class="row justify-content-center">
                 <div class="col-md-8">
 
-                    <?php if ($addSuccess) { ?>
-                        <h1>Patient bien ajouté !</h1>
+                    <?php if ($updateSuccess) { ?>
+                        <h1>Patient modifié !</h1>
                     <?php } else {
                         ?>
                         <form class="grey lighten-1" name="form" id="profileForm" method="post" enctype="multipart/form-data">
                             <div class="card">
                                 <!-- Card header -->
                                 <div class="card-header elegant-color-dark" role="tab" id="heading1">
-                                    <h2 class="mb-0 mt-3 grey-text">Coordonnées patient</h2>
+                                    <h2 class="mb-0 mt-3 grey-text">Modifier patient</h2>
                                 </div>
                                 <div class="card-body pt-0 grey lighten-1">
                                     <div class="form-row">
                                         <div class="md-form col-md-6">
                                             <label for="inputLastname">Nom<span class="red-text">* <?= isset($arrayError['lastnameErr']) ? $arrayError['lastnameErr'] : ''; ?></span></label>
-                                            <input class="form-control" id="inputLastname" type="text" name="inputLastname" value="<?= count($arrayError) != 0 ? $patientsOBJ->lastname : ''; ?>" />
+                                            <input class="form-control" id="inputLastname" type="text" name="inputLastname" value="<?= count($arrayError) != 0 || isset($_GET['id']) ? $arrayProfilPatient->lastname : ''; ?>" />
                                         </div>
                                         <div class="md-form col-md-6">
                                             <label for="inputFirstname">Prénom<span class="red-text">* <?= isset($arrayError['firstnameErr']) ? $arrayError['firstnameErr'] : ''; ?></span></label>
-                                            <input  class="form-control" id="inputFirstname" type="text" name="inputFirstname" value="<?= count($arrayError) != 0 ? $patientsOBJ->firstname : ''; ?>" />
+                                            <input  class="form-control" id="inputFirstname" type="text" name="inputFirstname" value="<?= count($arrayError) != 0 || isset($_GET['id']) ? $arrayProfilPatient->firstname : ''; ?>" />
                                         </div>
                                     </div>
                                     <div class="form-row ">
                                         <div class="md-form col-md-6">
                                             <label for="inputEmail">Email<span class="red-text">* <?= isset($arrayError['emailErr']) ? $arrayError['emailErr'] : ''; ?></span></label>
-                                            <input class="form-control" id="inputEmail" type="email" name="inputEmail" value="<?= count($arrayError) != 0 ? $patientsOBJ->mail : ''; ?>" />
+                                            <input class="form-control" id="inputEmail" type="email" name="inputEmail" value="<?= count($arrayError) != 0 || isset($_GET['id']) ? $arrayProfilPatient->mail : ''; ?>" />
                                         </div>
                                         <div class="md-form col-md-6">
                                             <label class="active" for="inputBirthdate">Date de naissance<span class="red-text">* <?= isset($arrayError['birthdateErr']) ? $arrayError['birthdateErr'] : ''; ?></span></label>
-                                            <input class="form-control" id="inputBirthdate" type="date"  name="inputBirthdate" value="<?= count($arrayError) != 0 ? $patientsOBJ->birthdate : ''; ?>" />
+                                            <input class="form-control" id="inputBirthdate" type="date"  name="inputBirthdate" value="<?= count($arrayError) != 0 || isset($_GET['id']) ? $arrayProfilPatient->birthdate : ''; ?>" />
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="md-form col-md-12">
                                             <label for="inputPhone">Téléphone<span class="red-text">* <?= isset($arrayError['phoneErr']) ? $arrayError['phoneErr'] : ''; ?></span></label>
-                                            <input class="form-control" id="inputPhone" type="text"  name="inputPhone" value="<?= count($arrayError) != 0 ? $patientsOBJ->phone : ''; ?>" />
+                                            <input class="form-control" id="inputPhone" type="text"  name="inputPhone" value="<?= count($arrayError) != 0 || isset($_GET['id']) ? $arrayProfilPatient->phone : ''; ?>" />
                                     </div>
                                 </div>
                             </div>
