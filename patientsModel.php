@@ -33,8 +33,7 @@ class patients extends database {
      */
      public function displayPatients() {
         $sql = $this->database->query('SELECT * FROM patients');
-        $result = $sql->fetchAll(PDO::FETCH_OBJ);
-        return $result;
+        return $sql->fetchAll(PDO::FETCH_OBJ);
     }
     // Exercice3
     /**
@@ -45,12 +44,11 @@ class patients extends database {
         $sql = $this->database->prepare('SELECT * FROM patients WHERE id = :id');
         $sql->bindValue(':id', $this->id, PDO::PARAM_INT);
         $sql->execute();
-        $arrayProfilePatient = $sql->fetch(PDO::FETCH_OBJ);
-        return $arrayProfilePatient;
+        return $sql->fetch(PDO::FETCH_OBJ);
     }
     // Exercice4
     /**
-     * Méthode qui renvoie les informations appartenanant à un patient
+     * Méthode qui met à jour les informations appartenanant à un patient
      * @return Tableau des informations du patient
      */
      public function updatePatient() {

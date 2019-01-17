@@ -9,6 +9,7 @@ class appointments extends database {
     public function __construct() {
         parent::__construct();
     }
+    // Exercice 4
     /**
      * Méthode permettant d'ajouter un rendez-vous
      * @return Exécute la requête pour ajouter un rendez-vous

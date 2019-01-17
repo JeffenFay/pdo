@@ -16,17 +16,17 @@ require_once 'CTRLR_ModifierPatient.php';
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
+        <!-- NAV -->
+        <?php include('navbar.php'); ?>
         <!-- TITLE -->
         <h1>Exercices p2 :<span id="flavTxt">"J’suis trop vieux pour ces conneries !" -<p id="movieName">L'arme fatale</p>-</span></h1>
-        <!-- NAV -->
-        <a href="index.php"><button type="button" class="btn btn-primary" >Accueil</button></a>
         <!-- CONTENT PAGE -->
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
 
                     <?php if ($updateSuccess) { ?>
-                        <h1>Patient modifié !</h1>
+                        <h1>Patient modifié avec succès !</h1>
                     <?php } else {
                         ?>
                         <form class="grey lighten-1" name="form" id="profileForm" method="post" enctype="multipart/form-data">
@@ -38,28 +38,28 @@ require_once 'CTRLR_ModifierPatient.php';
                                 <div class="card-body pt-0 grey lighten-1">
                                     <div class="form-row">
                                         <div class="md-form col-md-6">
-                                            <label for="inputLastname">Nom<span class="red-text">* <?= isset($arrayError['lastnameErr']) ? $arrayError['lastnameErr'] : ''; ?></span></label>
-                                            <input class="form-control" id="inputLastname" type="text" name="inputLastname" value="<?= count($arrayError) != 0 || isset($_GET['id']) ? $arrayProfilPatient->lastname : ''; ?>" />
+                                            <label for="inputLastname">Nom<span class="red-text">* <?= isset($arrayError['lastnameErr']) ? $arrayError['lastnameErr'] : '' ?></span></label>
+                                            <input class="form-control" id="inputLastname" type="text" name="inputLastname" value="<?= isset($_POST['inputLastname']) ? $_POST['inputLastname'] : $arrayProfilPatient->lastname ?>" />
                                         </div>
                                         <div class="md-form col-md-6">
-                                            <label for="inputFirstname">Prénom<span class="red-text">* <?= isset($arrayError['firstnameErr']) ? $arrayError['firstnameErr'] : ''; ?></span></label>
-                                            <input  class="form-control" id="inputFirstname" type="text" name="inputFirstname" value="<?= count($arrayError) != 0 || isset($_GET['id']) ? $arrayProfilPatient->firstname : ''; ?>" />
+                                            <label for="inputFirstname">Prénom<span class="red-text">* <?= isset($arrayError['firstnameErr']) ? $arrayError['firstnameErr'] : '' ?></span></label>
+                                            <input  class="form-control" id="inputFirstname" type="text" name="inputFirstname" value="<?= isset($_POST['inputFirstname']) ? $_POST['inputFirstname'] : $arrayProfilPatient->firstname ?>" />
                                         </div>
                                     </div>
                                     <div class="form-row ">
                                         <div class="md-form col-md-6">
-                                            <label for="inputEmail">Email<span class="red-text">* <?= isset($arrayError['emailErr']) ? $arrayError['emailErr'] : ''; ?></span></label>
-                                            <input class="form-control" id="inputEmail" type="email" name="inputEmail" value="<?= count($arrayError) != 0 || isset($_GET['id']) ? $arrayProfilPatient->mail : ''; ?>" />
+                                            <label for="inputEmail">Email<span class="red-text">* <?= isset($arrayError['emailErr']) ? $arrayError['emailErr'] : '' ?></span></label>
+                                            <input class="form-control" id="inputEmail" type="email" name="inputEmail" value="<?= isset($_POST['inputEmail']) ? $_POST['inputEmail'] : $arrayProfilPatient->mail ?>" />
                                         </div>
                                         <div class="md-form col-md-6">
-                                            <label class="active" for="inputBirthdate">Date de naissance<span class="red-text">* <?= isset($arrayError['birthdateErr']) ? $arrayError['birthdateErr'] : ''; ?></span></label>
-                                            <input class="form-control" id="inputBirthdate" type="date"  name="inputBirthdate" value="<?= count($arrayError) != 0 || isset($_GET['id']) ? $arrayProfilPatient->birthdate : ''; ?>" />
+                                            <label class="active" for="inputBirthdate">Date de naissance<span class="red-text">* <?= isset($arrayError['birthdateErr']) ? $arrayError['birthdateErr'] : '' ?></span></label>
+                                            <input class="form-control" id="inputBirthdate" type="date"  name="inputBirthdate" value="<?= isset($_POST['inputBirthdate']) ? $_POST['inputBirthdate'] : $arrayProfilPatient->birthdate ?>" />
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="md-form col-md-12">
-                                            <label for="inputPhone">Téléphone<span class="red-text">* <?= isset($arrayError['phoneErr']) ? $arrayError['phoneErr'] : ''; ?></span></label>
-                                            <input class="form-control" id="inputPhone" type="text"  name="inputPhone" value="<?= count($arrayError) != 0 || isset($_GET['id']) ? $arrayProfilPatient->phone : ''; ?>" />
+                                            <label for="inputPhone">Téléphone<span class="red-text">* <?= isset($arrayError['phoneErr']) ? $arrayError['phoneErr'] : '' ?></span></label>
+                                            <input class="form-control" id="inputPhone" type="text"  name="inputPhone" value="<?= isset($_POST['inputPhone']) ? $_POST['inputPhone'] : $arrayProfilPatient->phone ?>" />
                                     </div>
                                 </div>
                             </div>
@@ -75,6 +75,8 @@ require_once 'CTRLR_ModifierPatient.php';
                 </div>
             </div>
         </div>
+        <!-- FOOTER -->
+        <?php include('footer.php'); ?>
         <!-- JQuery CDN -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <!-- Bootstrap tooltips -->

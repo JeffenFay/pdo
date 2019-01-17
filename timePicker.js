@@ -1,8 +1,5 @@
 $(function () {
-    $('#datetimepicker').datetimepicker({
-        inline: true,
-        sideBySide: true,
-        locale: 'fr'
+    $('#datetimepicker_mask').datetimepicker({
+        mask: '9999/19/39 29:59'
     });
-    alert('motherfucker !');
 });

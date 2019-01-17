@@ -10,11 +10,11 @@ $idExist = false;
 if (isset($_GET['id'])) {
 
     $patientsOBJ->id = $_GET['id']; // affecte l'id de l'URL à l'attribut $id
-    $arrayPatient = $patientsOBJ->displayInfoPatient();
-    if ($arrayPatient === false) {
-        $idExist = false;
+    $arrayPatient = $patientsOBJ->displayInfoPatient(); // exécute la requête 
+    if ($arrayPatient === false) { // si il y a une erreur dans l'exécution de la requête
+        $idExist = false; // passe la variable à false et cache le profil
     } else {
-        $idExist = true;
+        $idExist = true; // sinon, l'affiche
     }
 }
 ?>

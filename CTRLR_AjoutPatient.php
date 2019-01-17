@@ -4,7 +4,6 @@ require_once 'patientsModel.php';
 // Instanciation de l'objet Hospital contenant les méthodes utilisées
 $patientsOBJ = new patients();
 $addSuccess = false;
-$arrayPatients = $patientsOBJ->displayPatients();
 
 // variable de récupération d'erreurs
 $arrayError = [];

@@ -6,8 +6,8 @@ $patientsOBJ = new patients();
 $updateSuccess = false;
 // vérifie si l'id est passée en paramètre dans l'URL
 if (isset($_GET['id'])) {
-    $patientsOBJ->id = $_GET['id']; // affecte l'id de l'URL à l'attribut $id
-    $arrayProfilPatient = $patientsOBJ->displayInfoPatient(); // exécute la requête via la méthode de l'objet patient
+    $patientsOBJ->id = $_GET['id']; // affecte l'id de l'URL à l'attribut $id par la méthode $_GET
+    $arrayProfilPatient = $patientsOBJ->displayInfoPatient(); // exécute la requête via la méthode de l'objet patients, pour afficher le profil du  patient
 }
 
 

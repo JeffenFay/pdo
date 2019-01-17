@@ -16,10 +16,10 @@ require_once 'CTRLR_AjoutPatient.php';
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
+        <!-- NAV -->
+        <?php include('navbar.php'); ?>
         <!-- TITLE -->
         <h1>Exercices p2 :<span id="flavTxt">"J’suis trop vieux pour ces conneries !" -<p id="movieName">L'arme fatale</p>-</span></h1>
-        <!-- NAV -->
-        <a href="index.php"><button type="button" class="btn btn-primary" >Accueil</button></a>
         <!-- CONTENT PAGE -->
         <div class="container">
             <div class="row justify-content-center">
@@ -75,6 +75,8 @@ require_once 'CTRLR_AjoutPatient.php';
                 </div>
             </div>
         </div>
+        <!-- FOOTER -->
+        <?php include('footer.php'); ?>
         <!-- JQuery CDN -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <!-- Bootstrap tooltips -->
