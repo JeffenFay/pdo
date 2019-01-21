@@ -6,7 +6,7 @@ require_once 'CTRLR_ListeRendezvous.php';
 <html lang="fr">
     <head>
         <meta charset="utf-8" />
-        <title>Exercice 2 - Partie 2</title>
+        <title>Exercice 6 - Partie 2</title>
         <!-- Bootstrap core CSS -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
         <!-- Material Design Bootstrap -->
@@ -23,20 +23,21 @@ require_once 'CTRLR_ListeRendezvous.php';
             <div class="container">
                 <div class="row">
                     <div class="col align-self-center">
+                            <a href="ajout-rendezvous.php"><button type="button" class="btn btn-success" >Ajouter rendez-vous</button></a>
                         <table  class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col"> Nom </th>
-                                    <th scope="col"> Prénom </th>
-                                    <th scope="col"> Date et heure </th>
+                                    <th scope="col"> DATE ET HEURE </th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($arrayRDV as $row) { ?>
                                     <tr>
-                                        <th scope="row"> <?= $row->lastname ?> </th>
-                                        <td><?= $row->firstname ?></td>
-                                        <td><?= $row->dateHour ?></td>
+                                        <th scope="row"><i class="far fa-calendar-check"></i> <?= $row->dateHour ?></th>
+                                        <td><a href="rendezvous.php?id=<?= $row->idPatients ?>"><button type="button" class="btn btn-info delete" >Détails</button></a></td>
+                                        <td><a href=""><button type="button" class="btn btn-danger delete" >Supprimer</button></a></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>

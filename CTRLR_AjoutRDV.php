@@ -60,13 +60,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    // fonction de sécurisation de la saisie, injection de code, espaces et antislashs
+}
+// fonction de sécurisation de la saisie, injection de code, espaces et antislashs
     function test_input($data) {
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
     }
-
-}
 ?>

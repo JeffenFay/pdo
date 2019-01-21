@@ -36,7 +36,8 @@ require_once 'CTRLR_ListePatients.php';
                                     <tr>
                                         <th scope="row"> <?= $row->lastname ?> </th>
                                         <td><?= $row->firstname ?></td>
-                                        <td><a href="profil-patient.php?id=<?= $row->id ?>"><button type="button" class="btn btn-success" >Afficher</button></a><a href=""><button type="button" class="btn btn-danger delete" >Supprimer</button></a></th>
+                                        <td><a href="profil-patient.php?id=<?= $row->id ?>"><button type="button" class="btn btn-success" >Afficher</button></a></td>
+                                        <td><a href=""><button type="button" class="btn btn-danger delete" >Supprimer</button></a></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
