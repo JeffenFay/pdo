@@ -11,6 +11,17 @@ class appointments extends database {
     }
     // Exercice5
     /**
+     * 
+     * @return type
+     */
+    public function checkFree(){
+        $query = 'SELECT COUNT(*) FROM appointments WHERE dateHour = :dateHour';
+        $sql = $this->database->prepare($query);
+        $sql->bindValue(':dateHour',$this->dateHour,PDO::PARAM_STR);
+        return $sql->execute();
+    }
+
+    /**
      * Méthode permettant d'ajouter un rendez-vous
      * @return Exécute la requête pour ajouter un rendez-vous
      */
@@ -21,7 +32,6 @@ class appointments extends database {
                 . ' WHERE NOT EXISTS'
                 . ' (SELECT dateHour FROM appointments WHERE dateHour = :dateHour AND idPatients = :idPatients)');
         $sql->bindValue(':dateHour',$this->dateHour,PDO::PARAM_STR);
-        echo $this->dateHour;
         $sql->bindValue(':idPatients',$this->idPatients,PDO::PARAM_INT);
         return $sql->execute();
     }

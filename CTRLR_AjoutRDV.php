@@ -52,20 +52,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['submit']) && count($arrayError) == 0) {
         $appointmentsOBJ->idPatients = $_POST['selectId']; // id du patient sélectionné
         $appointmentsOBJ->dateHour = $dateInput . ' ' . $hourInput; // mise en forme pour l'ajout à la table appointments
-        $testDoubleEntry = $appointmentsOBJ->addRDV(); // exécute la méthode permettant l'ajout de rendez-vous
-        if ($testDoubleEntry === false) {
-            $rendezvousSuccess = false; // variable mise à false
+        $count = $appointmentsOBJ->checkFree();
+        if ($count > 0) {
+            echo '<br /><br /><br /><br /><br /><br /><br /><br /><br />ERREUR rendez-vous déja pris !';
         } else {
-            $rendezvousSuccess = true; // variable mise à true pour cacher le formulaire
+            // exécute la méthode permettant l'ajout de rendez-vous
+            $testDoubleEntry = $appointmentsOBJ->addRDV();
+            if ($testDoubleEntry === false) {
+                $rendezvousSuccess = false; // variable mise à false
+            } else {
+                $rendezvousSuccess = true; // variable mise à true pour cacher le formulaire
+            }
         }
     }
-
 }
+
 // fonction de sécurisation de la saisie, injection de code, espaces et antislashs
-    function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
 ?>
