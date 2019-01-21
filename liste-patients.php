@@ -1,5 +1,5 @@
 <?php
-require_once 'CTRLR_AfficherTousLesPatients.php';
+require_once 'CTRLR_ListePatients.php';
 ?>
 
 <!DOCTYPE html>
@@ -19,28 +19,29 @@ require_once 'CTRLR_AfficherTousLesPatients.php';
     <body>
         <!-- NAV -->
         <?php include('navbar.php'); ?>
-        <h1>LISTE DES PATIENTS</h1>
-        <div class="container">
-            <div class="row">
-                <div class="col align-self-center">
-                    <table  class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col"> Nom </th>
-                                <th scope="col"> Prénom </th>
-                                <th scope="col"> Informations </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($arrayPatients as $row) { ?>
+        <div class="content-wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col align-self-center">
+                        <table  class="table table-striped">
+                            <thead>
                                 <tr>
-                                    <th scope="row"> <?= $row->lastname ?> </th>
-                                    <td><?= $row->firstname ?></td>
-                                    <td><a href="profil-patient.php?id=<?= $row->id ?>"><button type="button" class="btn btn-success" >Afficher</button></a><a href=""><button type="button" class="btn btn-danger" >Supprimer</button></a></th>
+                                    <th scope="col"> Nom </th>
+                                    <th scope="col"> Prénom </th>
+                                    <th scope="col"> Informations </th>
                                 </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($arrayPatients as $row) { ?>
+                                    <tr>
+                                        <th scope="row"> <?= $row->lastname ?> </th>
+                                        <td><?= $row->firstname ?></td>
+                                        <td><a href="profil-patient.php?id=<?= $row->id ?>"><button type="button" class="btn btn-success" >Afficher</button></a><a href=""><button type="button" class="btn btn-danger delete" >Supprimer</button></a></th>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

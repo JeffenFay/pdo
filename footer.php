@@ -21,7 +21,7 @@
                 <div class="row">
                     <!-- Grid column -->
                     <div class="col-md-12 py-1">
-                        <div class="mb-5 flex-center">
+                        <div class="mb-2 flex-center">
                             <!-- Facebook -->
                             <a class="fb-ic">
                                 <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>

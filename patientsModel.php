@@ -17,7 +17,9 @@ class patients extends database {
      * @return exécute la requête pour ajouter un patient
      */
     public function addPatient() {
-        $sql = $this->database->prepare('INSERT INTO patients (lastname, firstname, birthdate, phone, mail) VALUES (:lastname, :firstname, :birthdate, :phone, :mail)');
+        $sql = $this->database->prepare('IF NOT EXISTS ( SELECT 1 FROM patients WHERE lastname = :lastname AND firstname = :firstname ) BEGIN '
+                . 'INSERT INTO patients (lastname, firstname, birthdate, phone, mail) VALUES (:lastname, :firstname, :birthdate, :phone, :mail)'
+                . 'END');
         $sql->bindValue(':lastname',$this->lastname,PDO::PARAM_STR);
         $sql->bindValue(':firstname',$this->firstname,PDO::PARAM_STR);
         $sql->bindValue(':birthdate',$this->birthdate,PDO::PARAM_STR);
@@ -32,7 +34,7 @@ class patients extends database {
      * @return Tableau des informations des patients
      */
      public function displayPatients() {
-        $sql = $this->database->query('SELECT * FROM patients');
+        $sql = $this->database->query('SELECT * FROM patients ORDER BY lastname');
         return $sql->fetchAll(PDO::FETCH_OBJ);
     }
     // Exercice3

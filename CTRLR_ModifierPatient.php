@@ -4,19 +4,20 @@ require_once 'patientsModel.php';
 // Instanciation de l'objet Hospital contenant les méthodes utilisées
 $patientsOBJ = new patients();
 $updateSuccess = false;
+$link = 'liste-patients.php';
+$successPage = 'Patient modifié';
+$linkText = 'des patients';
 // vérifie si l'id est passée en paramètre dans l'URL
 if (isset($_GET['id'])) {
     $patientsOBJ->id = $_GET['id']; // affecte l'id de l'URL à l'attribut $id par la méthode $_GET
     $arrayProfilPatient = $patientsOBJ->displayInfoPatient(); // exécute la requête via la méthode de l'objet patients, pour afficher le profil du  patient
 }
-
-
 // variable de récupération d'erreurs
 $arrayError = [];
 // Test des champs obligatoires
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // regex utilisées pour le contrôle de saisie
-    $patternName = '/^[a-zA-ZÀ-ÿ \'-]*$/';
+    $patternName = '/^[a-zA-ZÄ-ỳ \'-]*$/';
     $patternPhone = '/^0[0-9]([ .-]?[0-9]{2}){4}$/';
     // contrôle de saisie
     // NOM
@@ -28,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!preg_match($patternName, $patientsOBJ->lastname)) {
             $arrayError['lastnameErr'] = 'Caractères incorrects ex : DOE';
         } else {
+            $patientsOBJ->lastname = strtoupper($patientsOBJ->lastname);
             unset($arrayError['lastnameErr']);
         }
     }
@@ -41,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!preg_match($patternName, $patientsOBJ->firstname)) {
             $arrayError['firstnameErr'] = 'Caractères incorrects ex : John';
         } else {
+            $patientsOBJ->firstname = ucfirst(strtolower($patientsOBJ->firstname));
             unset($arrayError['firstnameErr']);
         }
     }
@@ -53,6 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!filter_var($patientsOBJ->mail, FILTER_VALIDATE_EMAIL)) {
             $arrayError['emailErr'] = 'Format d\'email invalide ex : nom.prenom@mail.com';
         } else {
+            $patientsOBJ->mail = strtolower($patientsOBJ->mail);
             unset($arrayError['emailErr']);
         }
     }
@@ -65,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $dateTime2 = new DateTime(date('Y-m-d'));
         // vérifie si le champs contient une date de naissance plausible
         if (!$dateTime1->diff($dateTime2)>0) {
-            $arrayError['emailErr'] = 'Date incorrecte ex: 01/01/2019';
+            $arrayError['emailErr'] = 'Date incorrecte ex: 01/01/2000';
         } else {
             unset($arrayError['birthdateErr']);
         }

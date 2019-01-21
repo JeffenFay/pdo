@@ -4,6 +4,9 @@ require_once 'patientsModel.php';
 // Instanciation de l'objet Hospital contenant les méthodes utilisées
 $patientsOBJ = new patients();
 $addSuccess = false;
+$link = 'liste-patients.php';
+$successPage = 'Patient ajouté';
+$linkText = 'des patients';
 
 // variable de récupération d'erreurs
 $arrayError = [];
@@ -22,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!preg_match($patternName, $patientsOBJ->lastname)) {
             $arrayError['lastnameErr'] = 'Caractères incorrects ex : DOE';
         } else {
+            $patientsOBJ->lastname = strtoupper($patientsOBJ->lastname);
             unset($arrayError['lastnameErr']);
         }
     }
@@ -30,11 +34,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $arrayError['firstnameErr'] = 'Le prénom est requis';
     } else {
         $patientsOBJ->firstname = test_input($_POST['inputFirstname']);
-
+        
         // vérifie si le champs contient des lettres et de la ponctuation
         if (!preg_match($patternName, $patientsOBJ->firstname)) {
             $arrayError['firstnameErr'] = 'Caractères incorrects ex : John';
         } else {
+            $patientsOBJ->firstname = ucfirst(strtolower($patientsOBJ->firstname));
             unset($arrayError['firstnameErr']);
         }
     }

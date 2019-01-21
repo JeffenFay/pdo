@@ -1,5 +1,6 @@
 <?php
 require_once 'CTRLR_AjoutPatient.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -18,60 +19,62 @@ require_once 'CTRLR_AjoutPatient.php';
     <body>
         <!-- NAV -->
         <?php include('navbar.php'); ?>
-        <!-- TITLE -->
-        <h1>Exercices p2 :<span id="flavTxt">"J’suis trop vieux pour ces conneries !" -<p id="movieName">L'arme fatale</p>-</span></h1>
         <!-- CONTENT PAGE -->
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-
+        <div class="content-wrap">
+            <div class="container">
+                <div class="row justify-content-center">
                     <?php if ($addSuccess) { ?>
-                        <h1>Patient bien ajouté !</h1>
+                        <?php include('success.php'); ?>
                     <?php } else {
                         ?>
-                        <form class="grey lighten-1" name="form" id="profileForm" method="post" enctype="multipart/form-data">
-                            <div class="card">
-                                <!-- Card header -->
-                                <div class="card-header elegant-color-dark" role="tab" id="heading1">
-                                    <h2 class="mb-0 mt-3 grey-text">Coordonnées patient</h2>
-                                </div>
-                                <div class="card-body pt-0 grey lighten-1">
-                                    <div class="form-row">
-                                        <div class="md-form col-md-6">
-                                            <label for="inputLastname">Nom<span class="red-text">* <?= isset($arrayError['lastnameErr']) ? $arrayError['lastnameErr'] : ''; ?></span></label>
-                                            <input class="form-control" id="inputLastname" type="text" name="inputLastname" value="<?= count($arrayError) != 0 ? $patientsOBJ->lastname : ''; ?>" />
+                        <div class="col-md-8">
+                            <form class="grey lighten-1" name="form" id="profileForm" method="post" enctype="multipart/form-data">
+                                <div class="card">
+                                    <!-- Card header -->
+                                    <div class="card-header elegant-color-dark" role="tab" id="heading1">
+                                        <h2 class="mb-0 mt-3 grey-text">Coordonnées patient</h2>
+                                    </div>
+                                    <div class="card-body pt-0 grey lighten-1">
+                                        <div class="form-row">
+                                            <div class="md-form col-md-6">
+                                                <label for="inputLastname">Nom<span class="red-text">* <?= isset($arrayError['lastnameErr']) ? $arrayError['lastnameErr'] : ''; ?></span></label>
+                                                <input class="form-control" id="inputLastname" type="text" name="inputLastname" value="<?= count($arrayError) != 0 ? $patientsOBJ->lastname : ''; ?>" />
+                                            </div>
+                                            <div class="md-form col-md-6">
+                                                <label for="inputFirstname">Prénom<span class="red-text">* <?= isset($arrayError['firstnameErr']) ? $arrayError['firstnameErr'] : ''; ?></span></label>
+                                                <input  class="form-control" id="inputFirstname" type="text" name="inputFirstname" value="<?= count($arrayError) != 0 ? $patientsOBJ->firstname : ''; ?>" />
+                                            </div>
                                         </div>
-                                        <div class="md-form col-md-6">
-                                            <label for="inputFirstname">Prénom<span class="red-text">* <?= isset($arrayError['firstnameErr']) ? $arrayError['firstnameErr'] : ''; ?></span></label>
-                                            <input  class="form-control" id="inputFirstname" type="text" name="inputFirstname" value="<?= count($arrayError) != 0 ? $patientsOBJ->firstname : ''; ?>" />
+                                        <div class="form-row ">
+                                            <div class="md-form col-md-6">
+                                                <label for="inputEmail">Email<span class="red-text">* <?= isset($arrayError['emailErr']) ? $arrayError['emailErr'] : ''; ?></span></label>
+                                                <input class="form-control" id="inputEmail" type="email" name="inputEmail" value="<?= count($arrayError) != 0 ? $patientsOBJ->mail : ''; ?>" />
+                                            </div>
+                                            <div class="md-form col-md-6">
+                                                <label class="active" for="inputBirthdate">Date de naissance<span class="red-text">* <?= isset($arrayError['birthdateErr']) ? $arrayError['birthdateErr'] : ''; ?></span></label>
+                                                <input class="form-control" id="inputBirthdate" type="date"  name="inputBirthdate" value="<?= count($arrayError) != 0 ? $patientsOBJ->birthdate : ''; ?>" />
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="md-form col-md-12">
+                                                <label for="inputPhone">Téléphone<span class="red-text">* <?= isset($arrayError['phoneErr']) ? $arrayError['phoneErr'] : ''; ?></span></label>
+                                                <input class="form-control" id="inputPhone" type="text"  maxlength = "14"  name="inputPhone" value="<?= count($arrayError) != 0 ? $patientsOBJ->phone : ''; ?>" />
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-row ">
-                                        <div class="md-form col-md-6">
-                                            <label for="inputEmail">Email<span class="red-text">* <?= isset($arrayError['emailErr']) ? $arrayError['emailErr'] : ''; ?></span></label>
-                                            <input class="form-control" id="inputEmail" type="email" name="inputEmail" value="<?= count($arrayError) != 0 ? $patientsOBJ->mail : ''; ?>" />
-                                        </div>
-                                        <div class="md-form col-md-6">
-                                            <label class="active" for="inputBirthdate">Date de naissance<span class="red-text">* <?= isset($arrayError['birthdateErr']) ? $arrayError['birthdateErr'] : ''; ?></span></label>
-                                            <input class="form-control" id="inputBirthdate" type="date"  name="inputBirthdate" value="<?= count($arrayError) != 0 ? $patientsOBJ->birthdate : ''; ?>" />
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
+                                    <div class="form-row elegant-color-dark">
                                         <div class="md-form col-md-12">
-                                            <label for="inputPhone">Téléphone<span class="red-text">* <?= isset($arrayError['phoneErr']) ? $arrayError['phoneErr'] : ''; ?></span></label>
-                                            <input class="form-control" id="inputPhone" type="text"  name="inputPhone" value="<?= count($arrayError) != 0 ? $patientsOBJ->phone : ''; ?>" />
+                                            <div id="requiredField">
+                                                <button type="submit" name="submit" class="btn grey validate">Envoyer</button>
+                                                <a href="index.php" class="btn btn-danger">Annuler</a>
+                                                <span class="red-text">* champs requis</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-row elegant-color-dark">
-                                <div class="md-form col-md-12">
-                                    <button type="submit" name="submit" class="btn grey validate">Envoyer</button>
-                                    <div id="requiredField"><span class="red-text">* champs requis</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    <?php } ?>
+                            </form>
+                        <?php } ?>
+                    </div>
                 </div>
             </div>
         </div>

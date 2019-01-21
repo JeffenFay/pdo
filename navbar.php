@@ -21,18 +21,21 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="ajout-patient.php">Ajout patient</a>
+                        <a class="nav-link" href="ajout-patient.php">Ajout de patient</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="liste-patients.php">Liste patient</a>
+                        <a class="nav-link" href="liste-patients.php">Liste des patients</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="ajout-rendezvous.php">Rendez-vous !</a>
+                        <a class="nav-link" href="ajout-rendezvous.php">Rendez-vous</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="liste-rendezvous.php">Liste des rendez-vous</a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Recherche..." aria-label="Recherche">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Recherche</button>
+                    <button class="btn btn-outline-info my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
                 </form>
             </div>
         </nav>

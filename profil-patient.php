@@ -20,44 +20,46 @@ require_once 'CTRLR_AffichePatient.php';
         <!-- NAV -->
         <?php include('navbar.php'); ?>
         <h1>PATIENT</h1>
-        <div class="container">
-            <div class="row">
-                <div class="col align-self-center">
-                    <?php if (!$idExist) { ?>
-                        <h1>Erreur, le patient n'existe pas !</h1>
-                        <div><a href="liste-patients.php" class="btn btn-primary">Retour à la liste des patients</a></div>
-                    <?php } else {
-                        ?>
-                    <!-- Card -->
-                    <div class="card">
-                        <!-- Card content -->
-                        <div class="card-body">
-                                <!-- Title -->
-                                <h4 class="card-title"><a><?= $arrayPatient->lastname ?> <?= $arrayPatient->firstname ?></a></h4>
-                                <!-- Text -->
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <div class="md-v-line"></div><i class="fas fa-user-circle mr-4 pr-3"></i><p class="card-text">Nom : <?= $arrayPatient->lastname ?></p>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="md-v-line"></div><i class="far fa-user-circle mr-5"></i><p class="card-text">Prénom : <?= $arrayPatient->firstname ?></p>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="md-v-line"></div><i class="fas fa-at mr-5"></i><p class="card-text">Adresse de messagerie : <?= $arrayPatient->mail ?></p>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="md-v-line"></div><i class="fas fa-birthday-cake mr-5"></i><p class="card-text">Date de naissance : <?= date('d/m/Y', strtotime($arrayPatient->birthdate)) ?></p>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="md-v-line"></div><i class="fas fa-phone mr-5"></i><p class="card-text">Numéro de téléphone : <?= $arrayPatient->phone ?></p>
-                                    </li>
-                                </ul>
-                                <!-- Button -->
-                                <div><a href="liste-patients.php" class="btn btn-primary">Retour à la liste des patients</a><a href="modifier-patient.php?id=<?= $arrayPatient->id ?>"><button type="button" class="btn btn-secondary" >Modifier</button></a></div>
-                        </div>
+        <div class="content-wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col align-self-center">
+                        <?php if (!$idExist) { ?>
+                            <h1>Erreur, le patient n'existe pas !</h1>
+                            <div><a href="liste-patients.php" class="btn btn-primary">Retour à la liste des patients</a></div>
+                        <?php } else {
+                            ?>
+                            <!-- Card -->
+                            <div class="card">
+                                <!-- Card content -->
+                                <div class="card-body">
+                                    <!-- Title -->
+                                    <h4 class="card-title"><a><?= $arrayPatient->lastname ?> <?= $arrayPatient->firstname ?></a></h4>
+                                    <!-- Text -->
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            <div class="md-v-line"></div><i class="fas fa-user-circle mr-4 pr-3"></i><p class="card-text">Nom : <?= $arrayPatient->lastname ?></p>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="md-v-line"></div><i class="far fa-user-circle mr-5"></i><p class="card-text">Prénom : <?= $arrayPatient->firstname ?></p>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="md-v-line"></div><i class="fas fa-at mr-5"></i><p class="card-text">Adresse de messagerie : <?= $arrayPatient->mail ?></p>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="md-v-line"></div><i class="fas fa-birthday-cake mr-5"></i><p class="card-text">Date de naissance : <?= date('d/m/Y', strtotime($arrayPatient->birthdate)) ?></p>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="md-v-line"></div><i class="fas fa-phone mr-5"></i><p class="card-text">Numéro de téléphone : <?= $arrayPatient->phone ?></p>
+                                        </li>
+                                    </ul>
+                                    <!-- Button -->
+                                    <div><a href="liste-patients.php" class="btn btn-primary">Retour à la liste des patients</a><a href="modifier-patient.php?id=<?= $arrayPatient->id ?>"><button type="button" class="btn btn-secondary" >Modifier</button></a></div>
+                                </div>
+                            </div>
+                            <!-- Card -->
+                        <?php } ?>
                     </div>
-                    <!-- Card -->
-                    <?php } ?>
                 </div>
             </div>
         </div>
