@@ -6,4 +6,4 @@ $patientsOBJ = new patients();
 $arrayPatients = $patientsOBJ->displayPatients();
 
 
-?>
+?>  

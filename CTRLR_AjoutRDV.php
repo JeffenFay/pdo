@@ -8,6 +8,8 @@ $patientsOBJ = new patients();
 $appointmentsOBJ = new appointments();
 $arrayPatientRDV = $patientsOBJ->displayPatients();
 $rendezvousSuccess = false;
+$rendezvousFailure = false;
+$failurePage = 'Le rendez-vous du ' . $appointmentsOBJ->dateHour . ' ';
 $successPage = 'Rendez-vous ajouté'; // message personnalisé pour la validation
 $link = 'liste-rendezvous.php';
 $linkText = 'des rendez-vous';
@@ -18,7 +20,7 @@ $startHour = 8; // heure de début de rendez-vous
 $endHour = 10; // nombre d'heures à afficher pour une journée ouvrée +1
 // variable de récupération d'erreurs
 $arrayError = [];
-$regexDate = '/^(0[1-9]|((19|20)[0-9]{2})\-(0[1-9]|1[012])\-([1-2][0-9])|3[01])$/';
+$regexDate = '/^(((19|20)[0-9]{2})\-(0[1-9]|1[012])\-0[1-9]|([1-2][0-9])|3[01])$/';
 $regexHour = '/([01]?[0-9]|2[0-3]):[0-5][0-9]/';
 // Test des champs obligatoires
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -52,10 +54,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['submit']) && count($arrayError) == 0) {
         $appointmentsOBJ->idPatients = $_POST['selectId']; // id du patient sélectionné
         $appointmentsOBJ->dateHour = $dateInput . ' ' . $hourInput; // mise en forme pour l'ajout à la table appointments
-        $count = $appointmentsOBJ->checkFree();
+        $count = $appointmentsOBJ->checkFree(); // Vérification de l'existence d'un doublon avant insertion dans la base
         if ($count > 0) {
-            echo '<br /><br /><br /><br /><br /><br /><br /><br /><br />ERREUR rendez-vous déja pris !';
+            $rendezvousFailure = true;
         } else {
+            $rendezvousFailure = false;
             // exécute la méthode permettant l'ajout de rendez-vous
             $testDoubleEntry = $appointmentsOBJ->addRDV();
             if ($testDoubleEntry === false) {
@@ -74,5 +77,4 @@ function test_input($data) {
     $data = htmlspecialchars($data);
     return $data;
 }
-
 ?>

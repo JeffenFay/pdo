@@ -5,32 +5,30 @@ class appointments extends database {
     public $id;
     public $dateHour;
     public $idPatients;
+    public $dateHourRequest;
     
     public function __construct() {
         parent::__construct();
     }
-    // Exercice5
+    // Exercice5 
     /**
-     * 
-     * @return type
+     * Vérifie si le rendez-vous existe déjà
+     * @return 1 ou 0 s'il y a ou pas des doublons possibles
      */
     public function checkFree(){
-        $query = 'SELECT COUNT(*) FROM appointments WHERE dateHour = :dateHour';
+        $query = 'SELECT * FROM appointments WHERE dateHour = :dateHour';
         $sql = $this->database->prepare($query);
-        $sql->bindValue(':dateHour',$this->dateHour,PDO::PARAM_STR);
-        return $sql->execute();
+        $sql->bindValue(':dateHour', $this->dateHour, PDO::PARAM_STR);
+        $sql->execute();
+        return $sql->rowCount();
     }
-
+    // Suite
     /**
      * Méthode permettant d'ajouter un rendez-vous
      * @return Exécute la requête pour ajouter un rendez-vous
      */
-    //INSERT INTO appointments (dateHour, idPatients) SELECT '2019-01-30 16:00:00', 2 WHERE NOT EXISTS (SELECT dateHour FROM appointments WHERE dateHour = '2019-01-30 16:00:00' OR idPatients = 2);
     public function addRDV() {
-        $sql = $this->database->prepare('INSERT INTO appointments (dateHour, idPatients)'
-                . ' SELECT :dateHour, :idPatients'
-                . ' WHERE NOT EXISTS'
-                . ' (SELECT dateHour FROM appointments WHERE dateHour = :dateHour AND idPatients = :idPatients)');
+        $sql = $this->database->prepare('INSERT INTO appointments (dateHour, idPatients) VALUES (:dateHour, :idPatients)');
         $sql->bindValue(':dateHour',$this->dateHour,PDO::PARAM_STR);
         $sql->bindValue(':idPatients',$this->idPatients,PDO::PARAM_INT);
         return $sql->execute();
@@ -42,7 +40,7 @@ class appointments extends database {
      * @return Tableau des rendez-vous
      */
      public function displayAppointments() {
-        $sql = $this->database->query('SELECT DATE_FORMAT(dateHour,"%d/%m/%Y - %H:%i") AS dateHour, idPatients FROM appointments');
+        $sql = $this->database->query('SELECT DATE_FORMAT(dateHour,"%d/%m/%Y - %H:%i") AS dateHourRequest, idPatients FROM appointments ORDER BY dateHour');
         return $sql->fetchAll(PDO::FETCH_OBJ);
     }
     

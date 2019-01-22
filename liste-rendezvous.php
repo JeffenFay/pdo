@@ -35,7 +35,7 @@ require_once 'CTRLR_ListeRendezvous.php';
                             <tbody>
                                 <?php foreach ($arrayRDV as $row) { ?>
                                     <tr>
-                                        <th scope="row"><i class="far fa-calendar-check"></i> <?= $row->dateHour ?></th>
+                                        <th scope="row"><i class="far fa-calendar-check"></i> <?= $row->dateHourRequest ?></th>
                                         <td><a href="rendezvous.php?id=<?= $row->idPatients ?>"><button type="button" class="btn btn-info delete" >Détails</button></a></td>
                                         <td><a href=""><button type="button" class="btn btn-danger delete" >Supprimer</button></a></td>
                                     </tr>

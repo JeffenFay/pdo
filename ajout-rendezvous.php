@@ -57,7 +57,7 @@ require_once 'CTRLR_AjoutRDV.php';
                                                     for ($i = 0; $i < $endHour; $i++) {
                                                         if ($startHour != 11) { // on enlève le créneau de midi
                                                             ?>
-                                                            <option value="<?= $startHour += 1 ?>:00"><?= $startHour ?>:00</option>
+                                                            <option value="<?= $startHour += 1 ?>:00" <?php if (isset($_GET['selectTime']) == $startHour) { ?>selected<?php } ?> ><?= $startHour ?>:00</option>
                                                             <?php
                                                         } else {
                                                             $startHour += 1; // incrémente pour passer l'heure de midi
@@ -83,6 +83,9 @@ require_once 'CTRLR_AjoutRDV.php';
                     </div>
                 </div>
             </div>
+            <?php if ($rendezvousFailure) { ?>
+                <?php include('failure.php'); ?>
+            <?php } ?>
         </div>
         <!-- FOOTER -->
         <?php include('footer.php'); ?>
