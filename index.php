@@ -1,45 +1,39 @@
 <?php
-require_once 'CTRLR_AjoutPatient.php';
+// ROUTER servant à la redirection des pages pour le modèle MVC
+$request = $_SERVER['REQUEST_URI'];
+switch ($request) {
+    case '/index.php' :
+        require __DIR__ . '/views/accueil.php';
+        break;
+    case '/' :
+        require __DIR__ . '/views/accueil.php';
+        break;
+    case '/views/rendezvous' :
+        require __DIR__ . '/views/rendezvous.php';
+        break;
+    case '/views/profil-patient' :
+        require __DIR__ . '/views/profil-patient.php';
+        break;
+    case '/views/modifier-patient' :
+        require __DIR__ . '/views/modifier-patient.php';
+        break;
+    case '/views/modif-rendezvous' :
+        require __DIR__ . '/views/modif-rendezvous.php';
+        break;
+    case '/views/liste-rendezvous' :
+        require __DIR__ . '/views/liste-rendezvous.php';
+        break;
+    case '/views/liste-patients' :
+        require __DIR__ . '/views/liste-patients.php';
+        break;
+    case '/views/ajout-patient' :
+        require __DIR__ . '/views/ajout-patient.php';
+        break;
+    case '/views/ajout-rendezvous' :
+        require __DIR__ . '/views/ajout-rendezvous.php';
+        break;
+    default: 
+        require __DIR__ . '/views/errors/error_404.php';
+        break;
+}
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <meta charset="utf-8" />
-        <title>Exercice 1 - Zbraaaah !</title>
-        <!-- Bootstrap core CSS -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
-        <!-- Material Design Bootstrap -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.15/css/mdb.min.css" rel="stylesheet" />
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <!-- Custom templates -->
-        <link rel="stylesheet" href="style.css" />
-    </head>
-    <body>
-        <!-- NAV -->
-        <?php include('navbar.php'); ?>
-        <!-- CONTENT PAGE -->
-        <div class="content-wrap">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-6">
-                        <div id="logo" alt="hospitalE2N-logo"></div>
-                        <h2 id="flavor-text" class="text-center"><strong>Votre santé nous concerne</strong></h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- FOOTER -->
-        <?php include('footer.php'); ?>
-        <!-- JQuery CDN -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <!-- Bootstrap tooltips -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-        <!-- Bootstrap core JavaScript -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
-        <!-- MDB core JavaScript -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.15/js/mdb.min.js"></script>
-        <!-- Custom script -->
-    </body>
-</html>
