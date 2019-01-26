@@ -21,16 +21,19 @@ switch ($request) {
         require __DIR__ . '/views/modif-rendezvous.php';
         break;
     case '/views/liste-rendezvous' :
-        require __DIR__ . '/views/liste-rendezvous.php';
+        require __DIR__ . '/liste-rendezvous.php';
         break;
     case '/views/liste-patients' :
-        require __DIR__ . '/views/liste-patients.php';
+        require __DIR__ . '/liste-patients.php';
         break;
     case '/views/ajout-patient' :
-        require __DIR__ . '/views/ajout-patient.php';
+        require __DIR__ . '/ajout-patient.php';
         break;
     case '/views/ajout-rendezvous' :
-        require __DIR__ . '/views/ajout-rendezvous.php';
+        require __DIR__ . '/ajout-rendezvous.php';
+        break;
+    case '/views/accueil2' :
+        require __DIR__ . '/views/accueil2.php';
         break;
     default: 
         require __DIR__ . '/views/errors/error_404.php';

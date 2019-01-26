@@ -12,7 +12,7 @@ class appointments extends database {
         parent::__construct();
     }
 
-    // Exercice5 
+    // Controle des doublons 
     /**
      * Vérifie si le rendez-vous existe déjà, grâce aux marqueurs nominatifs
      * @return 1 ou 0 s'il y a ou pas des doublons possibles
@@ -25,7 +25,7 @@ class appointments extends database {
         return $sql->rowCount();
     }
 
-    // Suite
+    // Exercice5 
     /**
      * Méthode permettant d'ajouter un rendez-vous, grâce aux marqueurs nominatifs
      * @return Exécute la requête pour ajouter un rendez-vous
@@ -86,7 +86,18 @@ class appointments extends database {
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_OBJ);
     }
-
+    
+    //Exercice10
+    /**
+     * Méthode permettant de supprimer un rendez-vous, grâce aux marqueurs nominatifs
+     * @return Exécute la requête pour supprimer un rendez-vous
+     */
+    public function deleteRDV() {
+        $sql = $this->database->prepare('DELETE FROM appointments WHERE id = :idRdv');
+        $sql->bindValue(':idRdv', $this->id, PDO::PARAM_STR);
+        return $sql->execute();
+    }
+    
     public function __destruct() {
         parent::__destruct();
     }

@@ -8,6 +8,7 @@ class patients extends database {
     public $birthdate;
     public $phone;
     public $mail;
+    public $search;
     
     public function __construct() {
         parent::__construct();
@@ -28,6 +29,7 @@ class patients extends database {
         
         return $sql->execute();
     }
+    
     // Exercice2
     /**
      * Méthode qui renvoie la liste de tous les patients ainsi que de leurs informations
@@ -37,6 +39,7 @@ class patients extends database {
         $sql = $this->database->query('SELECT * FROM patients ORDER BY lastname');
         return $sql->fetchAll(PDO::FETCH_OBJ);
     }
+    
     // Exercice3
     /**
      * Méthode qui renvoie les informations appartenanant à un patient, grâce aux marqueurs nominatifs
@@ -48,6 +51,7 @@ class patients extends database {
         $sql->execute();
         return $sql->fetch(PDO::FETCH_OBJ);
     }
+    
     // Exercice4
     /**
      * Méthode qui met à jour les informations appartenanant à un patient, grâce aux marqueurs nominatifs
@@ -65,6 +69,29 @@ class patients extends database {
         return $sql->execute();
     }
     
+    //Exercice11
+    /**
+     * Méthode permettant de supprimer un patient, grâce aux marqueurs nominatifs
+     * @return Exécute la requête pour supprimer un patient
+     */
+    public function deletePatient() {
+        $sql = $this->database->prepare('DELETE FROM patients WHERE id = :idPatient');
+        $sql->bindValue(':idPatient', $this->id, PDO::PARAM_STR);
+        return $sql->execute();
+    }
+    
+    //Exercice12
+    /**
+     * Méthode permettant de faire une recherche
+     * @return Exécute la requête pour effectuer une recherche
+     */
+    public function searchPatient() {
+        $sql = $this->database->prepare('SELECT * FROM `patients` WHERE `lastname` LIKE :search OR `firstname` LIKE :search ORDER BY `lastname`');
+        $sql->bindValue(':search', '%' . $this->search . '%', PDO::PARAM_STR);
+        $sql->execute();
+        return $sql->fetchAll(PDO::FETCH_OBJ);
+    }
+
     public function __destruct() {
         parent::__destruct();
     }

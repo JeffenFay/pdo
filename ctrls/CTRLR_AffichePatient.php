@@ -18,7 +18,7 @@ if (isset($_GET['id'])) {
     } else {
         // affichage des rendez-vous d'un patient
         $rdvOBJ->idPatients = $patientsOBJ->id;
-        $arrayRDV = $rdvOBJ->appointmentsByPatient();
+        $arrayRDV = $rdvOBJ->appointmentsByPatient(); // méthode renvoyant otus les rendez-vous d'un patient
         if (count((array)$arrayRDV)) {
             $rdvExist = true; // pas de rendez-vous
         }

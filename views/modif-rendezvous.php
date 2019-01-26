@@ -65,7 +65,7 @@ require_once '../ctrls/CTRLR_ModifierRendezVous.php';
                                         <div class="md-form col-md-12">
                                             <div id="requiredField">
                                                 <button type="submit" name="submit" class="btn grey validate">Envoyer</button>
-                                                <a href="index.php" class="btn btn-danger">Annuler</a>
+                                                <a href="../index.php" class="btn btn-danger">Annuler</a>
                                                 <span class="red-text">* champs requis</span>
                                             </div>
                                         </div>

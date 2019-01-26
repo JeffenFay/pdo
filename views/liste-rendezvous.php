@@ -6,7 +6,7 @@ require_once '../ctrls/CTRLR_ListeRendezvous.php';
 <html lang="fr">
     <head>
         <meta charset="utf-8" />
-        <title>Exercice 6 - Partie 2</title>
+        <title>Exercice 6 & 10 - Partie 2</title>
         <!-- Bootstrap core CSS -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
         <!-- Material Design Bootstrap -->
@@ -23,7 +23,10 @@ require_once '../ctrls/CTRLR_ListeRendezvous.php';
             <div class="container">
                 <div class="row">
                     <div class="col align-self-center">
-                            <a href="ajout-rendezvous.php"><button type="button" class="btn btn-success" >Ajouter rendez-vous</button></a>
+                        <a href="ajout-rendezvous.php"><button type="button" class="btn btn-success" >Ajouter rendez-vous</button></a>
+                        <?php if ($deleteSuccess) { ?>
+                            <?php include('success.php'); ?>
+                        <?php } ?>
                         <table  class="table table-striped">
                             <thead>
                                 <tr>
@@ -37,7 +40,9 @@ require_once '../ctrls/CTRLR_ListeRendezvous.php';
                                     <tr>
                                         <th scope="row"><i class="far fa-calendar-check"></i> <?= $row->dateHourRequest ?></th>
                                         <td><a href="rendezvous.php?id=<?= $row->id ?>"><button type="button" class="btn btn-info delete" >Détails</button></a></td>
-                                        <td><a href=""><button type="button" class="btn btn-danger delete" >Supprimer</button></a></td>
+                                        <td>
+                                            <a href="liste-rendezvous.php?id=<?= $row->id ?>"><button class="btn btn-danger" >Supprimer</button></a>
+                                        </td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
