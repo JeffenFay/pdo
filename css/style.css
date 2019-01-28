@@ -22,13 +22,14 @@ body {
     padding-top: 4rem;
 }
 .page-footer {
+    z-index: 999;
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
 }
 .navbar {
-    z-index: 1;
+    z-index: 999;
     overflow: hidden;
     position: fixed;
     top: 0;
@@ -49,4 +50,7 @@ body {
 }
 .alert {
     margin-top: 1rem;
+}
+#cancelBtn{
+    margin-left: -.5rem;
 }

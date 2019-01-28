@@ -13,7 +13,7 @@ $arrayError = [];
 // Test des champs obligatoires
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // regex utilisées pour le contrôle de saisie
-    $patternName = '/^[a-zA-ZÀ-ÿ \'-]*$/';
+    $patternName = '/^[a-zÀ-Ÿ \'-]*$/';
     $patternPhone = '/^0[0-9]([ .-]?[0-9]{2}){4}$/';
     // contrôle de saisie
     // NOM
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!preg_match($patternName, $patientsOBJ->lastname)) {
             $arrayError['lastnameErr'] = 'Caractères incorrects ex : DOE';
         } else {
-            $patientsOBJ->lastname = strtoupper($patientsOBJ->lastname);
+            $patientsOBJ->lastname = mb_strtoupper($patientsOBJ->lastname,'UTF-8');
             unset($arrayError['lastnameErr']);
         }
     }
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!preg_match($patternName, $patientsOBJ->firstname)) {
             $arrayError['firstnameErr'] = 'Caractères incorrects ex : John';
         } else {
-            $patientsOBJ->firstname = ucfirst(strtolower($patientsOBJ->firstname));
+            $patientsOBJ->firstname = ucfirst(mb_strtolower($patientsOBJ->firstname,'UTF-8'));
             unset($arrayError['firstnameErr']);
         }
     }
