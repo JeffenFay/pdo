@@ -11,7 +11,12 @@ $successPage = 'Patient supprimé';
 $linkText = 'des patients';
 // variable de récupération d'erreurs
 $arrayError = [];
-// REGEX pour les noms
+// PAGINATION
+$patientsOBJ->rowPerPage = 3; // nombre de résultat par page
+$patientsOBJ->rowStart = 0; // résultat de départ
+$allcount = $patientsOBJ->countPatients(); // nombre de patients en tout
+$countPages = round($allcount/$patientsOBJ->rowPerPage); // nombre de pages
+// REGEX pour la saisie ici nom et prénom
 $patternName = '/^[a-zA-ZÀ-ÿ \'-]*$/';
 // Bouton supprimer
 if (isset($_GET['id'])) {
@@ -21,12 +26,44 @@ if (isset($_GET['id'])) {
 } else {
     $deleteSuccess = false;
 }
+
+// Bouton précédent
+if (isset($_POST['but_prev'])) {
+    $patientsOBJ->rowStart = $_POST['row'];
+    $patientsOBJ->rowStart -= $patientsOBJ->rowPerPage;
+    if ($patientsOBJ->rowStart < 0) {
+        $patientsOBJ->rowStart = 0;
+    }
+}
+
+// Bouton précédent
+if (isset($_POST['but_page'])) {
+    $patientsOBJ->rowStart = $_POST['but_page'];
+    $allcount = $_POST['allcount'];
+    $val = $patientsOBJ->rowStart + $patientsOBJ->rowPerPage;
+    if ($val < $allcount) {
+        $patientsOBJ->rowStart = $val;
+    }
+}
+
+// Bouton suivant
+if (isset($_POST['but_next'])) {
+    $patientsOBJ->rowStart = $_POST['row'];
+    $allcount = $_POST['allcount'];
+    $val = $patientsOBJ->rowStart + $patientsOBJ->rowPerPage;
+    if ($val < $allcount) {
+        $patientsOBJ->rowStart = $val;
+    }
+}
+
 // Bouton rechercher
 if (isset($_POST['searchBtn']) && !empty($_POST['search'])) {
     // Contrôle de la saisie de la recherche
     $patientsOBJ->search = test_input($_POST['search']);
     // vérifie si le champs contient des lettres et de la ponctuation
     if (!preg_match($patternName, $patientsOBJ->search)) {
+        // Affichage normal de la liste des patients
+        $arrayPatients = $patientsOBJ->displayPatients();
         $arrayError['searchErr'] = 'Caractères incorrects ex : John';
     } else {
         unset($arrayError['searchErr']);

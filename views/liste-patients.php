@@ -35,14 +35,15 @@ require_once '../ctrls/CTRLR_ListePatients.php';
                                     <th scope="col"> Prénom </th>
                                     <th scope="col"> Informations </th>
                                     <th scope="col">
+                                        <span class="red-text"><?= isset($arrayError['searchErr']) ? $arrayError['searchErr'] : ''; ?> </span>
                                         <form class="form-inline my-3 my-lg-0" method="post" >
-                                                <div class="input-group" role="group" aria-label="searchBar">
-                                                    <input class="form-control mr-sm-2" type="search" placeholder="Recherche..." aria-label="Recherche" name="search" value="<?= $patientsOBJ->search ?>" data-toggle="tooltip" data-placement="bottom" title="Recherche" />
-                                                    <div  class="input-group-append">
-                                                        <button class="btn-floating btn-blue-grey btn-sm input-group-text"  id="cancelBtn" type="submit" name="cancel" data-toggle="tooltip" data-placement="bottom" title="Annuler"><i class="fas far fa-times"></i></button>
-                                                    </div>
+                                            <div class="input-group" role="group" aria-label="searchBar">
+                                                <input class="form-control mr-sm-2" type="search" placeholder="Recherche..." aria-label="Recherche" name="search" value="<?= $patientsOBJ->search ?>" data-toggle="tooltip" data-placement="bottom" title="Recherche" />
+                                                <div  class="input-group-append">
+                                                    <button class="btn-floating btn-blue-grey btn-sm input-group-text"  id="cancelBtn" type="submit" name="cancel" data-toggle="tooltip" data-placement="bottom" title="Annuler"><i class="fas far fa-times"></i></button>
                                                 </div>
-                                                <button class="btn btn-outline-info btn-sm" type="submit" name="searchBtn" data-toggle="tooltip" data-placement="bottom" title="Rechercher"><i class="fas fa-search fa-2x"></i></button>
+                                            </div>
+                                            <button class="btn btn-outline-info btn-sm" type="submit" name="searchBtn" data-toggle="tooltip" data-placement="bottom" title="Rechercher"><i class="fas fa-search fa-2x"></i></button>
                                         </form>
                                     </th>
                                 </tr>
@@ -58,7 +59,8 @@ require_once '../ctrls/CTRLR_ListePatients.php';
                                                 <a href="liste-patients.php?id=<?= $row->id ?>"><button class="btn btn-danger" >Supprimer</button></a>
                                             </td>
                                         </tr>
-                                    <?php }
+                                        <?php
+                                    }
                                 } else {
                                     ?>
                                     <tr>
@@ -67,15 +69,26 @@ require_once '../ctrls/CTRLR_ListePatients.php';
                                         <td></td>
                                         <td></td>
                                     </tr>
-<?php } ?>
+                                <?php } ?>
                             </tbody>
                         </table>
+                        <form method="post">
+                            <div id="div_pagination">
+                                <input type="hidden" name="row" value="<?= $patientsOBJ->rowStart ?>">
+                                <input type="hidden" name="allcount" value="<?= $allcount ?>">
+                                <input type="submit" class="btn btn-floating btn-blue-grey btn-sm" name="but_prev" value="Précédent">
+                                <?php for ($i = 1; $i <= $countPages; $i++) { ?>
+                                    <input type="submit" class="btn btn-floating btn-blue-grey btn-sm" name="but_page" value="<?= $i ?>">
+                                <?php } ?>
+                                <input type="submit" class="btn btn-floating btn-blue-grey btn-sm" name="but_next" value="Suivant">
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
         <!-- FOOTER -->
-<?php include('footer.php'); ?>
+        <?php include('footer.php'); ?>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
         <!-- Bootstrap tooltips -->

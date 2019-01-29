@@ -9,6 +9,8 @@ class patients extends database {
     public $phone;
     public $mail;
     public $search;
+    public $rowStart;
+    public $rowPerPage;
     
     public function __construct() {
         parent::__construct();
@@ -30,14 +32,18 @@ class patients extends database {
         return $sql->execute();
     }
     
-    // Exercice2
+    // Exercice2 & 13
     /**
      * Méthode qui renvoie la liste de tous les patients ainsi que de leurs informations
      * @return Tableau des informations des patients
      */
      public function displayPatients() {
-        $sql = $this->database->query('SELECT * FROM patients ORDER BY lastname');
+        $sql = $this->database->query('SELECT * FROM patients ORDER BY lastname LIMIT ' . $this->rowStart . ', ' . $this->rowPerPage);
         return $sql->fetchAll(PDO::FETCH_OBJ);
+    }
+    public function countPatients() {
+        $sql = $this->database->query('SELECT * FROM patients');
+        return $sql->rowCount();
     }
     
     // Exercice3
@@ -86,7 +92,7 @@ class patients extends database {
      * @return Exécute la requête pour effectuer une recherche
      */
     public function searchPatient() {
-        $sql = $this->database->prepare('SELECT * FROM `patients` WHERE `lastname` LIKE :search OR `firstname` LIKE :search ORDER BY `lastname`');
+        $sql = $this->database->prepare('SELECT * FROM patients WHERE lastname LIKE :search OR firstname LIKE :search ORDER BY lastname');
         $sql->bindValue(':search', '%' . $this->search . '%', PDO::PARAM_STR);
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_OBJ);
