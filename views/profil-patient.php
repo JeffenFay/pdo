@@ -22,7 +22,7 @@ require_once '../ctrls/CTRLR_AffichePatient.php';
         <div class="content-wrap">
             <div class="container">
                 <div class="row">
-                    <div class="col align-self-center">
+                    <div class="col-sm-10 offset-sm-1 text-center">
                         <?php if (!$idExist) { ?>
                         <h1>Erreur, le patient n'existe pas !</h1>
                         <div><a href="liste-patients.php" class="btn btn-primary">Retour à la liste des patients</a></div>

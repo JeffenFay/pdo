@@ -22,7 +22,7 @@ require_once '../ctrls/CTRLR_ModifierRendezVous.php';
         <div class="content-wrap">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-md-8">
+                    <div class="col-sm-10 offset-sm-1 text-center">
                         <?php if ($updateSuccess) { ?>
                             <?php include('../views/success.php'); ?>
                         <?php } else {

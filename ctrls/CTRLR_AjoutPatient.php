@@ -7,13 +7,17 @@ $addSuccess = false;
 $link = '../view/liste-patients.php';
 $successPage = 'Patient ajouté';
 $linkText = 'des patients';
-
+// Gestion de l'affichage des bandeaux succès (success.php) et echec (failure.php)
+$rendezvousSuccess = false;
+$rendezvousFailure = false;
+$failurePage = 'Le mail ' . $patientsOBJ->mail . ' ';
+//
 // variable de récupération d'erreurs
 $arrayError = [];
 // Test des champs obligatoires
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // regex utilisées pour le contrôle de saisie
-    $patternName = '/^[a-zÀ-Ÿ \'-]*$/';
+    $patternName = '/^[a-zA-ZÀ-Ÿ \'-]*$/';
     $patternPhone = '/^0[0-9]([ .-]?[0-9]{2}){4}$/';
     // contrôle de saisie
     // NOM
@@ -82,8 +86,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     // VALIDER
     if (isset($_POST['submit']) && count($arrayError) == 0) {
-        $patientsOBJ->addPatient();
-        $addSuccess = true;
+        $count = $patientsOBJ->checkFree(); // Vérification de l'existence d'un doublon avant insertion dans la base
+        if ($count > 0) {
+            $addFailure = true;
+        } else {
+            $addFailure = false;
+            // exécute la méthode permettant l'ajout de patient
+            $testDoubleEntry = $patientsOBJ->addPatient();
+            if ($testDoubleEntry === false) {
+                $addSuccess = false; // variable mise à false
+            } else {
+                $addSuccess = true; // variable mise à true pour cacher le formulaire
+            }
+        }
     }
 }
 

@@ -22,7 +22,7 @@ require_once '../ctrls/CTRLR_ListeRendezvous.php';
         <div class="content-wrap">
             <div class="container">
                 <div class="row">
-                    <div class="col align-self-center">
+                    <div class="col-sm-10 offset-sm-1 text-center">
                         <a href="ajout-rendezvous.php"><button type="button" class="btn btn-success" >Ajouter rendez-vous</button></a>
                         <?php if ($deleteSuccess) { ?>
                             <?php include('success.php'); ?>

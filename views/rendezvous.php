@@ -23,7 +23,7 @@ require_once '../ctrls/CTRLR_DetailsRendezvous.php';
         <div class="content-wrap">
             <div class="container">
                 <div class="row">
-                    <div class="col align-self-center">
+                    <div class="col-sm-10 offset-sm-1 text-center">
                         <?php if (!$idExist) { ?>
                             <h1  class="red-text">Erreur, le rendez-vous n'existe pas !</h1>
                             <div><a href="liste-rendezvous.php" class="btn btn-primary">Retour à la liste des rendez-vous</a></div>

@@ -12,7 +12,7 @@ class appointments extends database {
         parent::__construct();
     }
 
-    // Controle des doublons 
+    // Contrôle des doublons 
     /**
      * Vérifie si le rendez-vous existe déjà, grâce aux marqueurs nominatifs
      * @return 1 ou 0 s'il y a ou pas des doublons possibles

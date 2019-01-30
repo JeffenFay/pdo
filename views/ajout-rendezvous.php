@@ -21,64 +21,62 @@ require_once '../ctrls/CTRLR_AjoutRDV.php';
         <!-- CONTENT PAGE -->
         <div class="content-wrap">
             <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-8">
-                        <?php if ($rendezvousSuccess) { ?>
-                            <?php include('success.php'); ?>
-                        <?php } else {
-                            ?>
-                            <form class="grey lighten-1" name="form" method="post" enctype="multipart/form-data">
-                                <div class="card">
-                                    <!-- Card header -->
-                                    <div class="card-header elegant-color-dark" role="tab" id="heading1">
-                                        <h2 class="mb-0 mt-3 grey-text">Ajouter rendez-vous</h2>
-                                    </div>
-                                    <div class="card-body pt-0 grey lighten-1">
-                                        <div class="form-row">
-                                            <div class="md-form col-md-6">
-                                                <h6>Patient concerné :<span class="red-text">* <?= isset($arrayError['patientErr']) ? $arrayError['patientErr'] : ''; ?></span></h6>
-                                                <select id="selectId" name="selectId" class="form-control" >
-                                                    <option value="" disabled selected>--Choisissez un patient--</option>
-                                                    <?php foreach ($arrayPatientRDV as $row) { ?>
-                                                        <option value="<?= $row->id ?>" <?= isset($_POST['id'])==$row->id ? 'selected' : '' ?>><?= $row->firstname ?> <?= $row->lastname ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
-                                            <div class="md-form col-md-6">
-                                                <h6>Créneau horaire de rendez-vous :</h6>
-                                                <div>Jour<span class="red-text">* <?= isset($arrayError['dayErr']) ? $arrayError['dayErr'] : ''; ?></span></div>
-                                                <input class="form-control" type="date" name="inputDate" id="inputDate" min="<?= $today ?>" max="<?= $oneDateLater ?>" value="<?= isset($_POST['inputDate']) ? $_POST['inputDate'] : '' ?>" />
-                                                <div>Heure<span class="red-text">* <?= isset($arrayError['hourErr']) ? $arrayError['hourErr'] : ''; ?></span></div>
-                                                <select id="selectTime" name="selectTime" class="form-control" >
-                                                    <option value="" disabled selected>--Choisissez un horaire--</option>
-                                                    <?php
-                                                    for ($i = 0; $i < $endHour; $i++) {
-                                                        if ($startHour != 11) { // on enlève le créneau de midi
-                                                            ?>
-                                                            <option value="<?= $startHour += 1 ?>:00" <?= isset($_POST['selectTime'])==$startHour ? 'selected' : '' ?> ><?= $startHour ?>:00</option>
-                                                            <?php
-                                                        } else {
-                                                            $startHour += 1; // incrémente pour passer l'heure de midi
-                                                        }
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
+                <div class="col-sm-10 offset-sm-1 text-center">
+                    <?php if ($rendezvousSuccess) { ?>
+                        <?php include('success.php'); ?>
+                    <?php } else {
+                        ?>
+                        <form class="grey lighten-1" name="form" method="post" enctype="multipart/form-data">
+                            <div class="card">
+                                <!-- Card header -->
+                                <div class="card-header elegant-color-dark" role="tab" id="heading1">
+                                    <h2 class="mb-0 mt-3 grey-text">Ajouter rendez-vous</h2>
+                                </div>
+                                <div class="card-body pt-0 grey lighten-1">
+                                    <div class="form-row">
+                                        <div class="md-form col-md-6">
+                                            <h6>Patient concerné :<span class="red-text">* <?= isset($arrayError['patientErr']) ? $arrayError['patientErr'] : ''; ?></span></h6>
+                                            <select id="selectId" name="selectId" class="form-control" >
+                                                <option value="" disabled selected>--Choisissez un patient--</option>
+                                                <?php foreach ($arrayPatientRDV as $row) { ?>
+                                                    <option value="<?= $row->id ?>" <?= isset($_POST['id']) == $row->id ? 'selected' : '' ?>><?= $row->firstname ?> <?= $row->lastname ?></option>
+                                                <?php } ?>
+                                            </select>
                                         </div>
-                                    </div>
-                                    <div class="form-row elegant-color-dark">
-                                        <div class="md-form col-md-12">
-                                            <div id="requiredField">
-                                                <button type="submit" name="submit" class="btn grey validate">Envoyer</button>
-                                                <a href="index.php" class="btn btn-danger">Annuler</a>
-                                                <span class="red-text">* champs requis</span>
-                                            </div>
+                                        <div class="md-form col-md-6">
+                                            <h6>Créneau horaire de rendez-vous :</h6>
+                                            <div>Jour<span class="red-text">* <?= isset($arrayError['dayErr']) ? $arrayError['dayErr'] : ''; ?></span></div>
+                                            <input class="form-control" type="date" name="inputDate" id="inputDate" min="<?= $today ?>" max="<?= $oneDateLater ?>" value="<?= isset($_POST['inputDate']) ? $_POST['inputDate'] : '' ?>" />
+                                            <div>Heure<span class="red-text">* <?= isset($arrayError['hourErr']) ? $arrayError['hourErr'] : ''; ?></span></div>
+                                            <select id="selectTime" name="selectTime" class="form-control" >
+                                                <option value="" disabled selected>--Choisissez un horaire--</option>
+                                                <?php
+                                                for ($i = 0; $i < $endHour; $i++) {
+                                                    if ($startHour != 11) { // on enlève le créneau de midi
+                                                        ?>
+                                                        <option value="<?= $startHour += 1 ?>:00" <?= isset($_POST['selectTime']) == $startHour ? 'selected' : '' ?> ><?= $startHour ?>:00</option>
+                                                        <?php
+                                                    } else {
+                                                        $startHour += 1; // incrémente pour passer l'heure de midi
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                        <?php } ?>
-                    </div>
+                                <div class="form-row elegant-color-dark">
+                                    <div class="md-form col-md-12">
+                                        <div id="requiredField">
+                                            <button type="submit" name="submit" class="btn grey validate">Envoyer</button>
+                                            <a href="index.php" class="btn btn-danger">Annuler</a>
+                                            <span class="red-text">* champs requis</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    <?php } ?>
                 </div>
             </div>
             <?php if ($rendezvousFailure) { ?>

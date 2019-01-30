@@ -9,20 +9,32 @@ class patients extends database {
     public $phone;
     public $mail;
     public $search;
-    public $rowStart;
-    public $rowPerPage;
+    public $rowStart = 0;
+    public $rowPerPage = 3;
     
     public function __construct() {
         parent::__construct();
     }
+    
+    // Controle des doublons 
+    /**
+     * Vérifie si le mail du patient existe déjà, grâce au marqueur nominatif
+     * @return 1 ou 0 s'il y a ou pas des doublons possibles
+     */
+    public function checkFree() {
+        $query = 'SELECT * FROM patients WHERE mail = :mail';
+        $sql = $this->database->prepare($query);
+        $sql->bindValue(':mail', $this->mail, PDO::PARAM_STR);
+        $sql->execute();
+        return $sql->rowCount();
+    }
+    
     /**
      * Méthode permettant d'ajouter un patient, grâce aux marqueurs nominatifs
      * @return exécute la requête pour ajouter un patient
      */
     public function addPatient() {
-        $sql = $this->database->prepare('IF NOT EXISTS ( SELECT 1 FROM patients WHERE lastname = :lastname AND firstname = :firstname ) BEGIN '
-                . 'INSERT INTO patients (lastname, firstname, birthdate, phone, mail) VALUES (:lastname, :firstname, :birthdate, :phone, :mail)'
-                . 'END');
+        $sql = $this->database->prepare('INSERT INTO `patients` (lastname, firstname, birthdate, phone, mail) VALUES (:lastname, :firstname, :birthdate, :phone, :mail)');
         $sql->bindValue(':lastname',$this->lastname,PDO::PARAM_STR);
         $sql->bindValue(':firstname',$this->firstname,PDO::PARAM_STR);
         $sql->bindValue(':birthdate',$this->birthdate,PDO::PARAM_STR);
@@ -32,12 +44,21 @@ class patients extends database {
         return $sql->execute();
     }
     
-    // Exercice2 & 13
+    // Exercice2
     /**
      * Méthode qui renvoie la liste de tous les patients ainsi que de leurs informations
      * @return Tableau des informations des patients
      */
      public function displayPatients() {
+        $sql = $this->database->query('SELECT * FROM patients ORDER BY lastname');
+        return $sql->fetchAll(PDO::FETCH_OBJ);
+    }
+    // Exercice 13
+    /**
+     * Méthode qui renvoie la liste de tous les patients ainsi que de leurs informations
+     * @return Tableau des informations des patients
+     */
+     public function paginationPatients() {
         $sql = $this->database->query('SELECT * FROM patients ORDER BY lastname LIMIT ' . $this->rowStart . ', ' . $this->rowPerPage);
         return $sql->fetchAll(PDO::FETCH_OBJ);
     }
@@ -88,7 +109,7 @@ class patients extends database {
     
     //Exercice12
     /**
-     * Méthode permettant de faire une recherche
+     * Méthode permettant de faire une recherche, grâce au marqueur nominatif
      * @return Exécute la requête pour effectuer une recherche
      */
     public function searchPatient() {

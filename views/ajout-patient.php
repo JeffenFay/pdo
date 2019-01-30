@@ -26,7 +26,7 @@ require_once '../ctrls/CTRLR_AjoutPatient.php';
                         <?php include('success.php'); ?>
                     <?php } else {
                         ?>
-                        <div class="col-md-8">
+                        <div class="col-sm-10 offset-sm-1 text-center">
                             <form class="grey lighten-1" name="form" id="profileForm" method="post" enctype="multipart/form-data">
                                 <div class="card">
                                     <!-- Card header -->
@@ -77,6 +77,9 @@ require_once '../ctrls/CTRLR_AjoutPatient.php';
                 </div>
             </div>
         </div>
+        <?php if ($addFailure) { ?>
+            <?php include('failure.php'); ?>
+        <?php } ?>
         <!-- FOOTER -->
         <?php include('footer.php'); ?>
         <!-- JQuery CDN -->
