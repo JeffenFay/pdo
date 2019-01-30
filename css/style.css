@@ -44,6 +44,8 @@ body {
 }
 .table {
     background-color: lightgrey;
+    table-layout: fixed;
+    width: 55rem; 
 }
 #requiredField .btn {
     margin-bottom: 0;
