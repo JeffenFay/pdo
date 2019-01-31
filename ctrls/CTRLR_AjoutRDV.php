@@ -1,7 +1,7 @@
 <?php
-require_once '../models/database.php';
-require_once '../models/patientsModel.php';
-require_once '../models/appointmentsModel.php';
+require_once 'models/database.php';
+require_once 'models/patientsModel.php';
+require_once 'models/appointmentsModel.php';
 //
 // Instanciation de l'objet Hospital contenant les méthodes utilisées
 $patientsOBJ = new patients();
@@ -12,7 +12,7 @@ $rendezvousSuccess = false;
 $rendezvousFailure = false;
 $failurePage = 'Le rendez-vous du ' . $appointmentsOBJ->dateHour . ' ';
 $successPage = 'Rendez-vous ajouté'; // message personnalisé pour la validation
-$link = '../model/liste-rendezvous.php';
+$link = 'models/liste-rendezvous.php';
 $linkText = 'des rendez-vous';
 //
 // Variables pour l'horaire $dateTime

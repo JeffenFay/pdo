@@ -1,5 +1,5 @@
 <?php
-require_once '../ctrls/CTRLR_ModifierRendezVous.php';
+require_once 'ctrls/CTRLR_ModifierRendezVous.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -7,12 +7,12 @@ require_once '../ctrls/CTRLR_ModifierRendezVous.php';
         <meta charset="utf-8" />
         <title>Exercice 8 - Partie 2</title>
         <!-- Bootstrap core CSS -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" />
         <!-- Material Design Bootstrap -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.15/css/mdb.min.css" rel="stylesheet" />
         <!-- Icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <!-- Custom templates -->
         <link rel="stylesheet" href="../css/style.css" />
     </head>
     <body>

@@ -1,5 +1,5 @@
 <?php
-require_once '../ctrls/CTRLR_AjoutRDV.php';
+require_once 'ctrls/CTRLR_AjoutRDV.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -7,7 +7,7 @@ require_once '../ctrls/CTRLR_AjoutRDV.php';
         <meta charset="utf-8" />
         <title>Exercice 5 - Partie 2</title>
         <!-- Bootstrap core CSS -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" />
         <!-- Material Design Bootstrap -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.15/css/mdb.min.css" rel="stylesheet" />
         <!-- Icons -->

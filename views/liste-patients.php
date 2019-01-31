@@ -1,5 +1,5 @@
 <?php
-require_once '../ctrls/CTRLR_ListePatients.php';
+require_once 'ctrls/CTRLR_ListePatients.php';
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +8,7 @@ require_once '../ctrls/CTRLR_ListePatients.php';
         <meta charset="utf-8" />
         <title>Exercice 2, 11, 12 & 13 - Partie 2</title>
         <!-- Bootstrap core CSS -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" />
         <!-- Material Design Bootstrap -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.15/css/mdb.min.css" rel="stylesheet" />
         <!-- Font Awesome -->
@@ -64,19 +64,13 @@ require_once '../ctrls/CTRLR_ListePatients.php';
                                 } else {
                                     ?>
                                     <tr>
-                                        <th scope="row"><strong>Désolé, aucun résultat pour cette recherche...</strong></th>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <th scope="row" colspan="4" class="red-text"><strong>Désolé, aucun résultat pour cette recherche...</strong></th>
                                     </tr>
                                 <?php } ?>
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th scope="row"><div class="pageNum">Page n° :</div></th>
-                                    <td><div class="numberCircle"><?= $navPage ?></div></td>
-                                    <td></td>
-                                    <td></td>
+                                    <th scope="row" colspan="4"><div class="pageNum">Page n° : <span class="numberCircle"><?= $navPage ?></span></div></th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -93,7 +87,7 @@ require_once '../ctrls/CTRLR_ListePatients.php';
                                 <button class="btn btn-flat btn-blue-grey btn-sm btnPagin" type="submit" name="btn_prev" data-toggle="tooltip" data-placement="bottom" title="Précédent"><i class="fas fa-chevron-circle-left fa-2x"></i></button>
                                 <?php for ($i = 1; $i <= $countPages; $i++) { ?>
                                     <input type="submit" class="btn btn-floating btn-blue-grey btn-sm btnPagin" name="btn_page" value="<?= $i ?>" />
-                                <?php } ?>
+                                    <?php } ?>
                                 <button class="btn btn-flat btn-blue-grey btn-sm btnPagin" type="submit" name="btn_next" data-toggle="tooltip" data-placement="bottom" title="Suivant"><i class="fas fa-chevron-circle-right fa-2x"></i></button>
                             </div>
                         </form>

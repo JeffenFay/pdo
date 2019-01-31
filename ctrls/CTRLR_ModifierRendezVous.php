@@ -1,11 +1,11 @@
 <?php
-require_once '../models/database.php';
-require_once '../models/appointmentsModel.php';
+require_once 'models/database.php';
+require_once 'models/appointmentsModel.php';
 // Instanciation de l'objet Hospital contenant les méthodes utilisées
 $appointmentsOBJ = new appointments();
 $rendezvousFailure = false;
 $updateSuccess = false;
-$link = '../view/liste-rendezvous.php';
+$link = 'views/liste-rendezvous.php';
 $successPage = 'Rendez-vous modifié';
 $linkText = 'des rendez-vous';
 //

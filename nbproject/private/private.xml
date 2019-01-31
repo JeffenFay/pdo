@@ -4,14 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/fay/www/pdo/models/patientsModel.php</file>
-            <file>file:/home/fay/www/pdo/ctrls/CTRLR_AjoutPatient.php</file>
             <file>file:/home/fay/www/pdo/views/liste-patients.php</file>
             <file>file:/home/fay/www/pdo/css/style.css</file>
             <file>file:/home/fay/www/pdo/ctrls/CTRLR_ListePatients.php</file>
-            <file>file:/home/fay/www/pdo/views/accueil.php</file>
-            <file>file:/home/fay/www/pdo/views/ajout-patient.php</file>
             <file>file:/home/fay/www/pdo/index.php</file>
             <file>file:/home/fay/www/pdo/.htaccess</file>
+            <file>file:/home/fay/www/pdo/models/appointmentsModel.php</file>
         </group>
     </open-files>
 </project-private>

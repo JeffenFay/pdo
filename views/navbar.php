@@ -7,16 +7,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="views/ajout-patient.php">Ajout de patient</a>
+                <a class="nav-link" href="/ajout-patient.php">Ajout de patient</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="views/liste-patients.php">Liste des patients</a>
+                <a class="nav-link" href="/liste-patients.php">Liste des patients</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="views/ajout-rendezvous.php">Rendez-vous</a>
+                <a class="nav-link" href="/ajout-rendezvous.php">Rendez-vous</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="views/liste-rendezvous.php">Liste des rendez-vous</a>
+                <a class="nav-link" href="/liste-rendezvous.php">Liste des rendez-vous</a>
             </li>
         </ul>
     </div>

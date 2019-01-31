@@ -1,10 +1,10 @@
 <?php
-require_once '../models/database.php';
-require_once '../models/patientsModel.php';
+require_once 'models/database.php';
+require_once 'models/patientsModel.php';
 // Instanciation de l'objet Hospital contenant les méthodes utilisées
 $patientsOBJ = new patients();
 $updateSuccess = false;
-$link = '../view/liste-patients.php';
+$link = 'views/liste-patients.php';
 $successPage = 'Patient modifié';
 $linkText = 'des patients';
 // vérifie si l'id est passée en paramètre dans l'URL

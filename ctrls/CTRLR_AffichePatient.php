@@ -1,8 +1,8 @@
 <?php
 
-require_once '../models/database.php';
-require_once '../models/patientsModel.php';
-require_once '../models/appointmentsModel.php';
+require_once 'models/database.php';
+require_once 'models/patientsModel.php';
+require_once 'models/appointmentsModel.php';
 // Instanciation de l'objet patients contenant les méthodes utilisées
 $patientsOBJ = new patients();
 $rdvOBJ = new appointments();

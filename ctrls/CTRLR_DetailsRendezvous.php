@@ -1,6 +1,6 @@
 <?php
-require_once '../models/database.php';
-require_once '../models/appointmentsModel.php';
+require_once 'models/database.php';
+require_once 'models/appointmentsModel.php';
 // Instanciation de l'objet patients contenant les méthodes utilisées
 $appointmentsOBJ = new appointments();
 // variable test sur l'existence de l'id
