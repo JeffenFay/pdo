@@ -48,7 +48,7 @@ require_once 'ctrls/CTRLR_DetailsRendezvous.php';
                                         </li>
                                     </ul>
                                     <!-- Button -->
-                                    <div><a href="liste-rendezvous.php" class="btn btn-primary">Liste des rendez-vous</a><a href="modif-rendezvous.php?id=<?= $arrayDetailRDV->id ?>"><button type="button" class="btn btn-secondary" >Modifier</button></a></div>
+                                    <div><a href="liste-rendezvous.php" class="btn btn-primary">Liste des rendez-vous</a><a href="modif-rendezvous.php"><button type="button" class="btn btn-secondary" >Modifier</button></a></div>
                                 </div>
                             </div>
                             <!-- Card -->

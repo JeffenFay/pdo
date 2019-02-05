@@ -1,10 +1,11 @@
 <?php
+
 require_once 'models/database.php';
 require_once 'models/patientsModel.php';
 // Instanciation de l'objet Hospital contenant les méthodes utilisées
 $patientsOBJ = new patients();
-$addSuccess = false;
-$link = '../view/liste-patients.php';
+$addSuccess = $addFailure = false; // variable d'affichage de la réussite ou de l'échec de l'ajout dans la table
+$link = 'liste-patients.php';
 $successPage = 'Patient ajouté';
 $linkText = 'des patients';
 // Gestion de l'affichage des bandeaux succès (success.php) et echec (failure.php)
@@ -29,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!preg_match($patternName, $patientsOBJ->lastname)) {
             $arrayError['lastnameErr'] = 'Caractères incorrects ex : DOE';
         } else {
-            $patientsOBJ->lastname = mb_strtoupper($patientsOBJ->lastname,'UTF-8');
+            $patientsOBJ->lastname = mb_strtoupper($patientsOBJ->lastname, 'UTF-8');
             unset($arrayError['lastnameErr']);
         }
     }
@@ -38,12 +39,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $arrayError['firstnameErr'] = 'Le prénom est requis';
     } else {
         $patientsOBJ->firstname = test_input($_POST['inputFirstname']);
-        
+
         // vérifie si le champs contient des lettres et de la ponctuation
         if (!preg_match($patternName, $patientsOBJ->firstname)) {
             $arrayError['firstnameErr'] = 'Caractères incorrects ex : John';
         } else {
-            $patientsOBJ->firstname = ucfirst(mb_strtolower($patientsOBJ->firstname,'UTF-8'));
+            $patientsOBJ->firstname = ucfirst(mb_strtolower($patientsOBJ->firstname, 'UTF-8'));
             unset($arrayError['firstnameErr']);
         }
     }
@@ -53,6 +54,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         $patientsOBJ->mail = test_input($_POST['inputEmail']);
         // vérifie si le champs contient un email
+        // Sanitize E-mail Address
+        //$email =filter_var($email, FILTER_SANITIZE_EMAIL); A TESTER
         if (!filter_var($patientsOBJ->mail, FILTER_VALIDATE_EMAIL)) {
             $arrayError['emailErr'] = 'Format d\'email invalide ex : nom.prenom@mail.com';
         } else {
@@ -67,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $dateTime1 = new DateTime($patientsOBJ->birthdate);
         $dateTime2 = new DateTime(date('Y-m-d'));
         // vérifie si le champs contient une date de naissance plausible
-        if (!$dateTime1->diff($dateTime2)>0) {
+        if (!$dateTime1->diff($dateTime2) > 0) {
             $arrayError['emailErr'] = 'Date incorrecte ex: 01/01/2019';
         } else {
             unset($arrayError['birthdateErr']);

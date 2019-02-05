@@ -54,9 +54,22 @@ require_once 'ctrls/CTRLR_ListePatients.php';
                                         <tr>
                                             <th scope="row"> <?= $row->lastname ?> </th>
                                             <td><?= $row->firstname ?></td>
-                                            <td><a href="profil-patient.php?id=<?= $row->id ?>"><button type="button" class="btn btn-info" >Afficher</button></a></td>
+                                            <td><form name="form_id" method="post">
+                                                    <input type="hidden" name="id" value="<?= $row->id ?>" />
+                                                    <input type="submit" name="btn_display" class="btn btn-info" value="Afficher" />
+                                                </form>
+                                            </td>
                                             <td>
-                                                <a href="liste-patients.php?id=<?= $row->id ?>"><button class="btn btn-danger" >Supprimer</button></a>
+                                                <?php if (!$warning) { ?>
+                                                    <form name="form_id" method="post">
+                                                        <input type="hidden" name="id" value="<?= $row->id ?>" />
+                                                        <input type="submit" name="btn_tryDelete" class="btn btn-danger" value="Supprimer" />
+                                                    </form>
+                                                    <?php
+                                                } else {
+                                                    include('warning.php');
+                                                }
+                                                ?>
                                             </td>
                                         </tr>
                                         <?php
@@ -77,18 +90,19 @@ require_once 'ctrls/CTRLR_ListePatients.php';
                     </div>
                 </div>
             </div>
+            <!-- PAGINATION -->
             <div class="container">
                 <div class="row">
                     <div class="col-sm-10 offset-sm-1 text-center">
-                        <form method="post">
+                        <form name="form_pagin" method="post">
                             <div id="div_pagination">
                                 <input type="hidden" name="row" value="<?= $patientsOBJ->rowStart ?>" />
                                 <input type="hidden" name="allcount" value="<?= $allcount ?>" />
-                                <button class="btn btn-flat btn-blue-grey btn-sm btnPagin" type="submit" name="btn_prev" data-toggle="tooltip" data-placement="bottom" title="Précédent"><i class="fas fa-chevron-circle-left fa-2x"></i></button>
+                                <button class="btn btn-flat btn-grey btn-sm btnPagin" type="submit" name="btn_prev" data-toggle="tooltip" data-placement="bottom" title="Précédent"><i class="fas fa-chevron-circle-left fa-2x"></i></button>
                                 <?php for ($i = 1; $i <= $countPages; $i++) { ?>
-                                    <input type="submit" class="btn btn-floating btn-blue-grey btn-sm btnPagin" name="btn_page" value="<?= $i ?>" />
-                                    <?php } ?>
-                                <button class="btn btn-flat btn-blue-grey btn-sm btnPagin" type="submit" name="btn_next" data-toggle="tooltip" data-placement="bottom" title="Suivant"><i class="fas fa-chevron-circle-right fa-2x"></i></button>
+                                    <input type="submit" class="btn btn-floating btn-grey btn-sm btnPagin" name="btn_page" value="<?= $i ?>" />
+                                <?php } ?>
+                                <button class="btn btn-flat btn-grey btn-sm btnPagin" type="submit" name="btn_next" data-toggle="tooltip" data-placement="bottom" title="Suivant"><i class="fas fa-chevron-circle-right fa-2x"></i></button>
                             </div>
                         </form>
                     </div>

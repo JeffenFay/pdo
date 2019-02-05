@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer class="page-footer font-small grey lighten-1">
+<footer class="page-footer font-small black lighten-1">
     <!-- Footer Elements -->
     <div class="container">
         <!-- Grid row-->

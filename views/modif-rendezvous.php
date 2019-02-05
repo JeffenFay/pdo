@@ -24,7 +24,7 @@ require_once 'ctrls/CTRLR_ModifierRendezVous.php';
                 <div class="row justify-content-center">
                     <div class="col-sm-10 offset-sm-1 text-center">
                         <?php if ($updateSuccess) { ?>
-                            <?php include('../views/success.php'); ?>
+                            <?php include('success.php'); ?>
                         <?php } else {
                             ?>
                             <form class="grey lighten-1" name="form" method="post" enctype="multipart/form-data">
@@ -40,7 +40,7 @@ require_once 'ctrls/CTRLR_ModifierRendezVous.php';
                                                 <input  class="form-control" type="text" disabled /><?= $arrayPatientRDV->firstname ?> <?= $arrayPatientRDV->lastname ?>
                                             </div>
                                             <div class="md-form col-md-7">
-                                                <h6>Modification du rendez-vous <?= $arrayPatientRDV->dateHour; ?> :</h6>
+                                                <h6>Modification du rendez-vous du <?= $arrayPatientRDV->dateHour; ?> :</h6>
                                                 <div>Jour<span class="red-text">* <?= isset($arrayError['dayErr']) ? $arrayError['dayErr'] : ''; ?></span></div>
                                                 <input class="form-control" type="date" name="inputDate" id="inputDate" min="<?= $today ?>" max="<?= $oneDateLater ?>" value="<?= isset($_POST['inputDate']) ? $_POST['inputDate'] : '' ?>" />
                                                 <div>Heure<span class="red-text">* <?= isset($arrayError['hourErr']) ? $arrayError['hourErr'] : ''; ?></span></div>
@@ -65,7 +65,7 @@ require_once 'ctrls/CTRLR_ModifierRendezVous.php';
                                         <div class="md-form col-md-12">
                                             <div id="requiredField">
                                                 <button type="submit" name="submit" class="btn grey validate">Envoyer</button>
-                                                <a href="../index.php" class="btn btn-danger">Annuler</a>
+                                                <a href="liste-rendezvous.php" class="btn btn-danger">Annuler</a>
                                                 <span class="red-text">* champs requis</span>
                                             </div>
                                         </div>
@@ -77,7 +77,7 @@ require_once 'ctrls/CTRLR_ModifierRendezVous.php';
                 </div>
             </div>
             <?php if ($rendezvousFailure) { ?>
-                <?php include('../views/failure.php'); ?>
+                <?php include('failure.php'); ?>
             <?php } ?>
         </div>
         <!-- FOOTER -->

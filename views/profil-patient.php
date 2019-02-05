@@ -62,7 +62,7 @@ require_once 'ctrls/CTRLR_AffichePatient.php';
                                     </li>
                                 </ul>
                                 <!-- Button -->
-                                <div><a href="liste-patients.php" class="btn btn-primary">Liste des patients</a><a href="modifier-patient.php?id=<?= $arrayPatient->id ?>"><button type="button" class="btn btn-secondary" >Modifier</button></a></div>
+                                <div><a href="liste-patients.php" class="btn btn-primary">Liste des patients</a><a href="modifier-patient.php"><button type="button" class="btn btn-secondary" >Modifier</button></a></div>
                             </div>
                         </div>
                         <!-- Card -->

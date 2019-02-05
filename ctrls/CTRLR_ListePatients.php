@@ -1,11 +1,12 @@
 <?php
+
 require_once 'models/database.php';
 require_once 'models/patientsModel.php';
 // Instanciation de l'objet Hospital contenant les méthodes utilisées
 $patientsOBJ = new patients();
 $deleteSuccess = false;
 $searchExist = false;
-$link = 'view/liste-patients.php';
+$link = 'views/liste-patients.php';
 $successPage = 'Patient supprimé';
 $linkText = 'des patients';
 // variable de récupération d'erreurs
@@ -13,26 +14,52 @@ $arrayError = [];
 // PAGINATION
 $patientsOBJ->rowPerPage = 3; // nombre de résultat par page
 $patientsOBJ->rowStart = 0; // résultat de départ
-$navPage = $patientsOBJ->rowStart+1;
+$navPage = $patientsOBJ->rowStart + 1;
 $allcount = $patientsOBJ->countPatients(); // nombre de patients en tout
 $countPages = ceil($allcount / $patientsOBJ->rowPerPage); // nombre de pages arrondi au chiffre supérieur
 //
 // REGEX pour la saisie ici nom et prénom
 $patternName = '/^[a-zA-ZÀ-ÿ \'-]*$/';
-// Bouton supprimer
-if (isset($_GET['id'])) {
-    $deleteSuccess = true;
-    $patientsOBJ->id = $_GET['id'];
-    $patientsOBJ->deletePatient();
+// SESSION initialise la session si elle n'est pas remplie
+$_SESSION['patient'] = isset($_SESSION['patient']) ? $_SESSION['patient'] : array();
+// Alerte suppression
+$warning = false;
+//Bouton afficher profil
+if (isset($_POST['btn_display'])) {
+    // Ajout de l'id du patient en variable session
+    if (isset($_POST['id'])) {
+        $_SESSION['patient'][$patientsOBJ->id] = test_input($_POST['id']);
+        header('Location: profil-patient.php');
+    }
+}
+// Bouton suppression
+if (isset($_POST['btn_tryDelete'])) {
+    if (isset($_POST['id'])) {
+        $_SESSION['patient'][$patientsOBJ->id] = test_input($_POST['id']);
+        $warning = true;
+        $deleteSuccess = true;
+    }
+}
+// Bouton DELETE
+if (isset($_POST['btn_delete'])) {
+    if (array_key_exists($patientsOBJ->id, $_SESSION['patient'])) {
+        $patientsOBJ->id = $_SESSION['patient'][$patientsOBJ->id];
+        $deleteSuccess = true;
+        $patientsOBJ->deletePatient();
+    }
 } else {
     $deleteSuccess = false;
 }
-
+// Bouton annuler suppression
+if (isset($_POST['btn_abort'])) {
+    $deleteSuccess = false;
+    $warning = false;
+}
 // Bouton précédent
 if (isset($_POST['btn_prev'])) {
     $patientsOBJ->rowStart = $_POST['row'];
     $patientsOBJ->rowStart -= $patientsOBJ->rowPerPage;
-    $navPage= $patientsOBJ->rowStart/$patientsOBJ->rowPerPage+1;
+    $navPage = $patientsOBJ->rowStart / $patientsOBJ->rowPerPage + 1;
     if ($patientsOBJ->rowStart < 0) {
         $patientsOBJ->rowStart = 0;
         $navPage = 1;
@@ -57,9 +84,9 @@ if (isset($_POST['btn_next'])) {
     $val = $patientsOBJ->rowStart + $patientsOBJ->rowPerPage;
     if ($val < $allcount) {
         $patientsOBJ->rowStart = $val;
-        $navPage = ($val/$patientsOBJ->rowPerPage)+1;
+        $navPage = ($val / $patientsOBJ->rowPerPage) + 1;
     } else {
-        $navPage = ($val/$patientsOBJ->rowPerPage);
+        $navPage = ($val / $patientsOBJ->rowPerPage);
     }
 }
 

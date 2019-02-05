@@ -7,9 +7,14 @@ class appointments extends database {
     public $dateHour;
     public $idPatients;
     public $dateHourRequest;
+    public $rowStart;
+    public $rowPerPage;
 
     public function __construct() {
         parent::__construct();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
     }
 
     // Contrôle des doublons 
@@ -45,6 +50,20 @@ class appointments extends database {
     public function displayAppointments() {
         $sql = $this->database->query('SELECT id, DATE_FORMAT(dateHour,"%d/%m/%Y - %H:%i") AS dateHourRequest, idPatients FROM appointments ORDER BY dateHour');
         return $sql->fetchAll(PDO::FETCH_OBJ);
+    }
+    
+    // Exercice 13
+    /**
+     * Méthode qui renvoie la liste de tous les rendez-vous ainsi que de leurs informations en paginant via $rowPerPage
+     * @return Tableau des informations des rendez-vous
+     */
+     public function paginationAppointments() {
+        $sql = $this->database->query('SELECT id, DATE_FORMAT(dateHour,"%d/%m/%Y - %H:%i") AS dateHourRequest, idPatients FROM appointments ORDER BY dateHour LIMIT ' . $this->rowStart . ', ' . $this->rowPerPage);
+        return $sql->fetchAll(PDO::FETCH_OBJ);
+    }
+    public function countAppointments() {
+        $sql = $this->database->query('SELECT * FROM appointments');
+        return $sql->rowCount();
     }
 
     // Exercice7
@@ -86,7 +105,7 @@ class appointments extends database {
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_OBJ);
     }
-    
+
     //Exercice10
     /**
      * Méthode permettant de supprimer un rendez-vous, grâce aux marqueurs nominatifs
@@ -97,7 +116,7 @@ class appointments extends database {
         $sql->bindValue(':idRdv', $this->id, PDO::PARAM_STR);
         return $sql->execute();
     }
-    
+
     public function __destruct() {
         parent::__destruct();
     }

@@ -9,6 +9,9 @@ switch ($request) {
     case '/' :
         require __DIR__ . '/views/accueil.php';
         break;
+    case '/accueil.php' :
+        require __DIR__ . '/views/accueil.php';
+        break;
     case '/rendezvous.php' :
         require __DIR__ . '/views/rendezvous.php';
         break;

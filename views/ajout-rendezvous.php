@@ -29,26 +29,36 @@ require_once 'ctrls/CTRLR_AjoutRDV.php';
                         <form class="grey lighten-1" name="form" method="post" enctype="multipart/form-data">
                             <div class="card">
                                 <!-- Card header -->
-                                <div class="card-header elegant-color-dark" role="tab" id="heading1">
+                                <div class="card-header text-center elegant-color-dark" role="tab" id="heading1">
                                     <h2 class="mb-0 mt-3 grey-text">Ajouter rendez-vous</h2>
                                 </div>
                                 <div class="card-body pt-0 grey lighten-1">
-                                    <div class="form-row">
-                                        <div class="md-form col-md-6">
-                                            <h6>Patient concerné :<span class="red-text">* <?= isset($arrayError['patientErr']) ? $arrayError['patientErr'] : ''; ?></span></h6>
-                                            <select id="selectId" name="selectId" class="form-control" >
-                                                <option value="" disabled selected>--Choisissez un patient--</option>
-                                                <?php foreach ($arrayPatientRDV as $row) { ?>
-                                                    <option value="<?= $row->id ?>" <?= isset($_POST['id']) == $row->id ? 'selected' : '' ?>><?= $row->firstname ?> <?= $row->lastname ?></option>
-                                                <?php } ?>
-                                            </select>
+                                    <div class="form-group row justify-content-center">
+                                        <div class="md-form col-md-6 mb-2">
+                                            <h6>Patient concerné<span class="red-text">* <?= isset($arrayError['patientErr']) ? $arrayError['patientErr'] : ''; ?></span></h6>
+                                            <div class="form-group mx-sm-2 mb-4">
+                                                <select id="selectTime" name="selectId" class="custom-select" >
+                                                    <option value="" disabled selected>--Choisissez un patient--</option>
+                                                    <?php foreach ($arrayPatientRDV as $row) { ?>
+                                                        <option value="<?= $row->id ?>" <?= isset($_POST['id']) == $row->id ? 'selected' : '' ?>><?= $row->firstname ?> <?= $row->lastname ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
                                         </div>
-                                        <div class="md-form col-md-6">
+                                    </div>
+                                    <div class="form-group row justify-content-center">
+                                        <div class="form-group col-md-12 mb-2">
                                             <h6>Créneau horaire de rendez-vous :</h6>
-                                            <div>Jour<span class="red-text">* <?= isset($arrayError['dayErr']) ? $arrayError['dayErr'] : ''; ?></span></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row justify-content-center">
+                                        <div class="form-group col-md-6 mb-2">
+                                            <label for="inputDate">Jour<span class="red-text">* <?= isset($arrayError['dayErr']) ? $arrayError['dayErr'] : ''; ?></span></label>
                                             <input class="form-control" type="date" name="inputDate" id="inputDate" min="<?= $today ?>" max="<?= $oneDateLater ?>" value="<?= isset($_POST['inputDate']) ? $_POST['inputDate'] : '' ?>" />
-                                            <div>Heure<span class="red-text">* <?= isset($arrayError['hourErr']) ? $arrayError['hourErr'] : ''; ?></span></div>
-                                            <select id="selectTime" name="selectTime" class="form-control" >
+                                        </div>
+                                        <div class="form-group col-md-6 mb-2">
+                                            <label for="selectTime">Heure<span class="red-text">* <?= isset($arrayError['hourErr']) ? $arrayError['hourErr'] : ''; ?></span></label>
+                                            <select id="selectTime" name="selectTime" class="custom-select" >
                                                 <option value="" disabled selected>--Choisissez un horaire--</option>
                                                 <?php
                                                 for ($i = 0; $i < $endHour; $i++) {

@@ -1,7 +1,7 @@
 <?php
 
 class patients extends database {
-    // champs de la table patients arrributs
+    // attributs de la classe patients 
     public $id;
     public $lastname;
     public $firstname;
@@ -9,11 +9,14 @@ class patients extends database {
     public $phone;
     public $mail;
     public $search;
-    public $rowStart = 0;
-    public $rowPerPage = 3;
+    public $rowStart;
+    public $rowPerPage;
     
     public function __construct() {
         parent::__construct();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
     }
     
     // Controle des doublons 
@@ -55,7 +58,7 @@ class patients extends database {
     }
     // Exercice 13
     /**
-     * Méthode qui renvoie la liste de tous les patients ainsi que de leurs informations
+     * Méthode qui renvoie la liste de tous les patients ainsi que de leurs informations en paginant via $rowPerPage
      * @return Tableau des informations des patients
      */
      public function paginationPatients() {
@@ -121,6 +124,7 @@ class patients extends database {
 
     public function __destruct() {
         parent::__destruct();
+//        session_destroy();
     }
 }
 ?>

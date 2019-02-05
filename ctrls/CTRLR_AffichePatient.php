@@ -9,9 +9,11 @@ $rdvOBJ = new appointments();
 // variable test sur l'existence de l'id et des rendez-vous
 $idExist = false;
 $rdvExist = false;
-// vérifie si l'id est passée en paramètre dans l'URL
-if (isset($_GET['id'])) {
-    $patientsOBJ->id = $_GET['id']; // affecte l'id de l'URL à l'attribut $id
+// SESSION initialise la session si elle n'est pas remplie
+$_SESSION['patient']=isset($_SESSION['patient']) ? $_SESSION['patient'] : array();
+// vérifie si l'id est présent dans la session
+if(array_key_exists($patientsOBJ->id, $_SESSION['patient'])){
+    $patientsOBJ->id = $_SESSION['patient'][$patientsOBJ->id]; // affecte l'id de l'URL à l'attribut $id
     $arrayPatient = $patientsOBJ->displayInfoPatient(); // exécute la requête 
     if ($arrayPatient === false) { // si il y a une erreur dans l'exécution de la requête
         $idExist = false; // passe la variable à false et cache le profil

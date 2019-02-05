@@ -5,7 +5,7 @@ require_once 'models/appointmentsModel.php';
 $appointmentsOBJ = new appointments();
 $rendezvousFailure = false;
 $updateSuccess = false;
-$link = 'views/liste-rendezvous.php';
+$link = 'liste-rendezvous.php';
 $successPage = 'Rendez-vous modifié';
 $linkText = 'des rendez-vous';
 //
@@ -14,9 +14,11 @@ $today = date('Y-m-d'); // variable servant à initialiser le calendrier à la d
 $oneDateLater = date('Y-m-d', strtotime(date('Y-m-d') . ' +6 month')); // variable servant à délimiter la fin du calendrier
 $startHour = 8; // heure de début de rendez-vous
 $endHour = 10; // nombre d'heures à afficher pour une journée ouvrée +1
-// vérifie si l'id est passée en paramètre dans l'URL
-if (isset($_GET['id'])) {
-    $appointmentsOBJ->id = $_GET['id']; // affecte l'id de l'URL à l'attribut $id par la méthode $_GET
+// SESSION initialise la session si elle n'est pas remplie
+$_SESSION['rdv']=isset($_SESSION['rdv']) ? $_SESSION['rdv'] : array();
+// vérifie si l'id est présent dans la session
+if(array_key_exists($appointmentsOBJ->id, $_SESSION['rdv'])){
+    $appointmentsOBJ->id = $_SESSION['rdv'][$appointmentsOBJ->id]; // affecte l'id de l'URL à l'attribut $id
     $arrayPatientRDV = $appointmentsOBJ->displayDetailsAppointments(); // exécute la requête via la méthode de l'objet patients, pour afficher le profil du  patient
 }
 // variable de récupération d'erreurs

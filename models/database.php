@@ -22,7 +22,7 @@ class database {
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING); // Affiche les erreurs SQL
             // Mise en relation avec la base de donnée
-            $this->database = new PDO($db_config['SGBD'] . ':host=' . $db_config['HOST'] . ';dbname=' . $db_config['DB_NAME'] . ';charset=UTF8', $db_config['USER'], $db_config['PASSWORD']);
+            $this->database = new PDO($db_config['SGBD'] . ':host=' . $db_config['HOST'] . ';dbname=' . $db_config['DB_NAME'] . ';charset=UTF8', $db_config['USER'], $db_config['PASSWORD'],$db_config['OPTIONS']);
             unset($db_config);
         } catch (Exception $error) {
             // récupération des erreurs

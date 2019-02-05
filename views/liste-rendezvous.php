@@ -23,7 +23,6 @@ require_once 'ctrls/CTRLR_ListeRendezvous.php';
             <div class="container">
                 <div class="row">
                     <div class="col-sm-10 offset-sm-1 text-center">
-                        <a href="ajout-rendezvous.php"><button type="button" class="btn btn-success" >Ajouter rendez-vous</button></a>
                         <?php if ($deleteSuccess) { ?>
                             <?php include('success.php'); ?>
                         <?php } ?>
@@ -31,22 +30,56 @@ require_once 'ctrls/CTRLR_ListeRendezvous.php';
                             <thead>
                                 <tr>
                                     <th scope="col"> DATE ET HEURE </th>
-                                    <th scope="col"></th>
-                                    <th scope="col"></th>
+                                    <th scope="col" colspan="2"><a href="ajout-rendezvous.php"><button type="button" class="btn btn-success my-0" >Ajouter rendez-vous</button></a></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($arrayRDV as $row) { ?>
                                     <tr>
                                         <th scope="row"><i class="far fa-calendar-check"></i> <?= $row->dateHourRequest ?></th>
-                                        <td><a href="rendezvous.php?id=<?= $row->id ?>"><button type="button" class="btn btn-info delete" >Détails</button></a></td>
+                                        <td><form name="form_id" method="post">
+                                                <input type="hidden" name="id" value="<?= $row->id ?>" />
+                                                <input type="submit" name="btn_details" class="btn btn-info" value="Détails" />
+                                            </form></td>
                                         <td>
-                                            <a href="liste-rendezvous.php?id=<?= $row->id ?>"><button class="btn btn-danger" >Supprimer</button></a>
+                                            <?php if (!$warning && isset($_SESSION['rdv'][$appointmentsOBJ->id])== $row->id) { ?>
+                                                <form name="form_id" method="post">
+                                                    <input type="hidden" name="id" value="<?= $row->id ?>" />
+                                                    <input type="submit" name="btn_tryDelete" class="btn btn-danger" value="Supprimer" />
+                                                </form>
+                                                <?php
+                                            } else {
+                                                include('warning.php');
+                                            }
+                                            ?>
                                         </td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th scope="row" colspan="3"><div class="pageNum">Page n° : <span class="numberCircle"><?= $navPage ?></span></div></th>
+                                </tr>
+                            </tfoot>
                         </table>
+                    </div>
+                </div>
+            </div>
+            <!-- PAGINATION -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-10 offset-sm-1 text-center">
+                        <form method="post">
+                            <div id="div_pagination">
+                                <input type="hidden" name="row" value="<?= $appointmentsOBJ->rowStart ?>" />
+                                <input type="hidden" name="allcount" value="<?= $allcount ?>" />
+                                <button class="btn btn-flat btn-grey btn-sm btnPagin" type="submit" name="btn_prev" data-toggle="tooltip" data-placement="bottom" title="Précédent"><i class="fas fa-chevron-circle-left fa-2x"></i></button>
+                                <?php for ($i = 1; $i <= $countPages; $i++) { ?>
+                                    <input type="submit" class="btn btn-floating btn-grey btn-sm btnPagin" name="btn_page" value="<?= $i ?>" />
+                                <?php } ?>
+                                <button class="btn btn-flat btn-grey btn-sm btnPagin" type="submit" name="btn_next" data-toggle="tooltip" data-placement="bottom" title="Suivant"><i class="fas fa-chevron-circle-right fa-2x"></i></button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

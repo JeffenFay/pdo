@@ -4,12 +4,14 @@ require_once 'models/patientsModel.php';
 // Instanciation de l'objet Hospital contenant les méthodes utilisées
 $patientsOBJ = new patients();
 $updateSuccess = false;
-$link = 'views/liste-patients.php';
+$link = 'liste-patients.php';
 $successPage = 'Patient modifié';
 $linkText = 'des patients';
+// SESSIONS initialise la session si elle n'est pas remplie
+$_SESSION['patient']=isset($_SESSION['patient']) ? $_SESSION['patient'] : array();
 // vérifie si l'id est passée en paramètre dans l'URL
-if (isset($_GET['id'])) {
-    $patientsOBJ->id = $_GET['id']; // affecte l'id de l'URL à l'attribut $id par la méthode $_GET
+if(array_key_exists($patientsOBJ->id, $_SESSION['patient'])){
+    $patientsOBJ->id = $_SESSION['patient'][$patientsOBJ->id]; // affecte l'id de l'URL à l'attribut $id par la méthode $_GET
     $arrayProfilPatient = $patientsOBJ->displayInfoPatient(); // exécute la requête via la méthode de l'objet patients, pour afficher le profil du  patient
 }
 // variable de récupération d'erreurs

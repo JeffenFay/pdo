@@ -12,7 +12,7 @@ $rendezvousSuccess = false;
 $rendezvousFailure = false;
 $failurePage = 'Le rendez-vous du ' . $appointmentsOBJ->dateHour . ' ';
 $successPage = 'Rendez-vous ajouté'; // message personnalisé pour la validation
-$link = 'models/liste-rendezvous.php';
+$link = 'liste-rendezvous.php';
 $linkText = 'des rendez-vous';
 //
 // Variables pour l'horaire $dateTime
