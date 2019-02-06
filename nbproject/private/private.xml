@@ -6,12 +6,10 @@
             <file>file:/home/fay/www/pdo/views/liste-patients.php</file>
             <file>file:/home/fay/www/pdo/ctrls/CTRLR_ListeRendezvous.php</file>
             <file>file:/home/fay/www/pdo/css/style.css</file>
-            <file>file:/home/fay/www/pdo/views/navbar.php</file>
             <file>file:/home/fay/www/pdo/views/liste-rendezvous.php</file>
             <file>file:/home/fay/www/pdo/ctrls/CTRLR_ListePatients.php</file>
-            <file>file:/home/fay/www/pdo/index.php</file>
-            <file>file:/home/fay/www/pdo/.htaccess</file>
-            <file>file:/home/fay/www/pdo/models/appointmentsModel.php</file>
+            <file>file:/home/fay/www/pdo/views/warning.php</file>
+            <file>file:/home/fay/www/pdo/views/ajout-rendezvous.php</file>
         </group>
     </open-files>
 </project-private>

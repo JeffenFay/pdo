@@ -30,14 +30,14 @@ require_once 'ctrls/CTRLR_AjoutRDV.php';
                             <div class="card">
                                 <!-- Card header -->
                                 <div class="card-header text-center elegant-color-dark" role="tab" id="heading1">
-                                    <h2 class="mb-0 mt-3 grey-text">Ajouter rendez-vous</h2>
+                                    <h2 class="mb-0 mt-3 grey-text">Ajouter un rendez-vous</h2>
                                 </div>
                                 <div class="card-body pt-0 grey lighten-1">
                                     <div class="form-group row justify-content-center">
                                         <div class="md-form col-md-6 mb-2">
                                             <h6>Patient concerné<span class="red-text">* <?= isset($arrayError['patientErr']) ? $arrayError['patientErr'] : ''; ?></span></h6>
                                             <div class="form-group mx-sm-2 mb-4">
-                                                <select id="selectTime" name="selectId" class="custom-select" >
+                                                <select id="selectId" name="selectId" class="custom-select" >
                                                     <option value="" disabled selected>--Choisissez un patient--</option>
                                                     <?php foreach ($arrayPatientRDV as $row) { ?>
                                                         <option value="<?= $row->id ?>" <?= isset($_POST['id']) == $row->id ? 'selected' : '' ?>><?= $row->firstname ?> <?= $row->lastname ?></option>
@@ -52,8 +52,8 @@ require_once 'ctrls/CTRLR_AjoutRDV.php';
                                         </div>
                                     </div>
                                     <div class="form-group row justify-content-center">
-                                        <div class="form-group col-md-6 mb-2">
-                                            <label for="inputDate">Jour<span class="red-text">* <?= isset($arrayError['dayErr']) ? $arrayError['dayErr'] : ''; ?></span></label>
+                                        <div class="form-group md-form col-md-6 mb-2 mt-0">
+                                            <div>Jour<span class="red-text">* <?= isset($arrayError['dayErr']) ? $arrayError['dayErr'] : ''; ?></span></div>
                                             <input class="form-control" type="date" name="inputDate" id="inputDate" min="<?= $today ?>" max="<?= $oneDateLater ?>" value="<?= isset($_POST['inputDate']) ? $_POST['inputDate'] : '' ?>" />
                                         </div>
                                         <div class="form-group col-md-6 mb-2">

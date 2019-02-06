@@ -1,5 +1,5 @@
 <?php
-require_once 'ctrls/CTRLR_AffichePatient.php';
+require_once 'ctrls/CTRLR_ProfilPatient.php';
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +33,7 @@ require_once 'ctrls/CTRLR_AffichePatient.php';
                             <!-- Card content -->
                             <div class="card-body">
                                 <!-- Title -->
-                                <div class="card-title">PATIENT : <?= $arrayPatient->lastname ?> <?= $arrayPatient->firstname ?></div>
+                                <div class="card-title"><strong>PATIENT : </strong><u><?= $arrayPatient->lastname ?> <?= $arrayPatient->firstname ?></u></div>
                                 <!-- Text -->
                                 <ul class="list-group">
                                     <li class="list-group-item">

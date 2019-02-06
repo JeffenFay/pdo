@@ -23,91 +23,97 @@ require_once 'ctrls/CTRLR_ListePatients.php';
             <?php
             if ($deleteSuccess) {
                 include('success.php');
-            }
-            ?>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-10 offset-sm-1 text-center">
-                        <table  class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col"> Nom </th>
-                                    <th scope="col"> Prénom </th>
-                                    <th scope="col"> Informations </th>
-                                    <th scope="col">
-                                        <span class="red-text"><?= isset($arrayError['searchErr']) ? $arrayError['searchErr'] : ''; ?> </span>
-                                        <form class="form-inline my-3 my-lg-0" method="post" >
-                                            <div class="input-group" role="group" aria-label="searchBar">
-                                                <input class="form-control mr-sm-2" type="search" placeholder="Recherche..." aria-label="Recherche" name="search" value="<?= $patientsOBJ->search ?>" data-toggle="tooltip" data-placement="bottom" title="Recherche" />
-                                                <div  class="input-group-append">
-                                                    <button class="btn-floating btn-blue btn-sm input-group-text" id="searchBtn" type="submit" name="searchBtn" data-toggle="tooltip" data-placement="bottom" title="Rechercher"><i class="fas fa-search"></i></button>
-                                                    <button class="btn-floating btn-blue-grey btn-sm input-group-text" type="submit" name="cancel" data-toggle="tooltip" data-placement="bottom" title="Annuler"><i class="fas far fa-times"></i></button>
+            } else {
+                ?>
+                <?php if ($warning) { ?>
+                    <div class="row justify-content-center">
+                        <div class="col-8">
+                            <?php include('warning.php'); ?>
+                        </div>
+                    </div>
+                <?php } ?>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-10 text-center">
+                            <table  class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"> Nom </th>
+                                        <th scope="col"> Prénom </th>
+                                        <th scope="col" colspan="2">
+                                            <form class="form-inline my-3 my-lg-0 mx-4" method="post" >
+                                                <div class="input-group" role="group" aria-label="searchBar">
+                                                    <input class="form-control " type="search" placeholder="Rechercher..." aria-label="Rechercher" name="search" value="<?= $patientsOBJ->search ?>" data-toggle="tooltip" data-placement="bottom" title="Rechercher nom/prénom" />
+                                                    <div  class="input-group-append">
+                                                        <button class="btn-floating btn-blue btn-sm input-group-text" id="searchBtn" type="submit" name="searchBtn" data-toggle="tooltip" data-placement="bottom" title="Rechercher"><i class="fas fa-search"></i></button>
+                                                        <button class="btn-floating btn-blue-grey btn-sm input-group-text" type="submit" name="cancel" data-toggle="tooltip" data-placement="bottom" title="Annuler"><i class="fas far fa-times"></i></button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </form>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if (!$searchExist) { ?>
-                                    <?php foreach ($arrayPatients as $row) { ?>
-                                        <tr>
-                                            <th scope="row"> <?= $row->lastname ?> </th>
-                                            <td><?= $row->firstname ?></td>
-                                            <td><form name="form_id" method="post">
-                                                    <input type="hidden" name="id" value="<?= $row->id ?>" />
-                                                    <input type="submit" name="btn_display" class="btn btn-info" value="Afficher" />
-                                                </form>
-                                            </td>
-                                            <td>
-                                                <?php if (!$warning) { ?>
+                                            </form>
+                                            <div class="red-text text-left ml-4"><small><?= isset($arrayError['searchErr']) ? $arrayError['searchErr'] : ''; ?></small></div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if (!$searchExist) { ?>
+                                        <?php foreach ($arrayPatients as $row) { ?>
+                                            <tr>
+                                                <th scope="row"> <?= $row->lastname ?> </th>
+                                                <td><?= $row->firstname ?></td>
+                                                <td><form name="form_id" method="post">
+                                                        <input type="hidden" name="id" value="<?= $row->id ?>" />
+                                                        <input type="submit" name="btn_display" class="btn btn-info" value="Détails" />
+                                                    </form>
+                                                </td>
+                                                <td>
                                                     <form name="form_id" method="post">
                                                         <input type="hidden" name="id" value="<?= $row->id ?>" />
+                                                        <input type="hidden" name="lastname" value="<?= $row->lastname ?>" />
+                                                        <input type="hidden" name="firstname" value="<?= $row->firstname ?>" />
                                                         <input type="submit" name="btn_tryDelete" class="btn btn-danger" value="Supprimer" />
                                                     </form>
-                                                    <?php
-                                                } else {
-                                                    include('warning.php');
-                                                }
-                                                ?>
-                                            </td>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    } else {
+                                        ?>
+                                        <tr>
+                                            <th scope="row" colspan="4" class="red-text"><strong>Désolé, aucun résultat pour cette recherche...</strong></th>
                                         </tr>
-                                        <?php
-                                    }
-                                } else {
-                                    ?>
+                                    <?php } ?>
+                                </tbody>
+                                <tfoot>
                                     <tr>
-                                        <th scope="row" colspan="4" class="red-text"><strong>Désolé, aucun résultat pour cette recherche...</strong></th>
+                                        <th scope="row" colspan="4">
+                                            <?php if (!$searchRequest) { ?>
+                                                <!-- PAGINATION -->
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-sm-10 offset-sm-1 text-center">
+                                                            <form name="form_pagin" method="post">
+                                                                <div id="div_pagination">
+                                                                    <input type="hidden" name="row" value="<?= $patientsOBJ->rowStart ?>" />
+                                                                    <input type="hidden" name="allcount" value="<?= $allcount ?>" />
+                                                                    <button class="btn btn-flat btn-grey btn-sm btnPagin" type="submit" name="btn_prev" data-toggle="tooltip" data-placement="bottom" title="Précédent"><i class="fas fa-chevron-circle-left fa-2x"></i></button>
+                                                                    <?php for ($i = 1; $i <= $countPages; $i++) { ?>
+                                                                        <input type="submit" class="btn btn-floating btn-grey btn-sm btnPagin <?= ($navPage == $i) ? 'active' : '' ?>" name="btn_page" value="<?= $i ?>" />
+                                                                    <?php } ?>
+                                                                    <button class="btn btn-floating btn-grey btn-sm btnPagin" type="submit" name="btn_next" data-toggle="tooltip" data-placement="bottom" title="Suivant"><i class="fas fa-chevron-circle-right fa-2x"></i></button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php } ?>
+                                        </th>
                                     </tr>
-                                <?php } ?>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th scope="row" colspan="4"><div class="pageNum">Page n° : <span class="numberCircle"><?= $navPage ?></span></div></th>
-                                </tr>
-                            </tfoot>
-                        </table>
+                                </tfoot>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- PAGINATION -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-10 offset-sm-1 text-center">
-                        <form name="form_pagin" method="post">
-                            <div id="div_pagination">
-                                <input type="hidden" name="row" value="<?= $patientsOBJ->rowStart ?>" />
-                                <input type="hidden" name="allcount" value="<?= $allcount ?>" />
-                                <button class="btn btn-flat btn-grey btn-sm btnPagin" type="submit" name="btn_prev" data-toggle="tooltip" data-placement="bottom" title="Précédent"><i class="fas fa-chevron-circle-left fa-2x"></i></button>
-                                <?php for ($i = 1; $i <= $countPages; $i++) { ?>
-                                    <input type="submit" class="btn btn-floating btn-grey btn-sm btnPagin" name="btn_page" value="<?= $i ?>" />
-                                <?php } ?>
-                                <button class="btn btn-flat btn-grey btn-sm btnPagin" type="submit" name="btn_next" data-toggle="tooltip" data-placement="bottom" title="Suivant"><i class="fas fa-chevron-circle-right fa-2x"></i></button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            <?php } ?>
         </div>
         <!-- FOOTER -->
         <?php include('footer.php'); ?>

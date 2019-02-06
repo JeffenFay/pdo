@@ -15,10 +15,10 @@ $oneDateLater = date('Y-m-d', strtotime(date('Y-m-d') . ' +6 month')); // variab
 $startHour = 8; // heure de début de rendez-vous
 $endHour = 10; // nombre d'heures à afficher pour une journée ouvrée +1
 // SESSION initialise la session si elle n'est pas remplie
-$_SESSION['rdv']=isset($_SESSION['rdv']) ? $_SESSION['rdv'] : array();
-// vérifie si l'id est présent dans la session
-if(array_key_exists($appointmentsOBJ->id, $_SESSION['rdv'])){
-    $appointmentsOBJ->id = $_SESSION['rdv'][$appointmentsOBJ->id]; // affecte l'id de l'URL à l'attribut $id
+$_SESSION['rdv_id']=isset($_SESSION['rdv_id']) ? $_SESSION['rdv_id'] : array();
+// vérifie et récupère l'id si il est présent dans la session
+if(isset($_SESSION['rdv_id'])){
+    $appointmentsOBJ->id = $_SESSION['rdv_id']; // affecte l'id de l'URL à l'attribut $id
     $arrayPatientRDV = $appointmentsOBJ->displayDetailsAppointments(); // exécute la requête via la méthode de l'objet patients, pour afficher le profil du  patient
 }
 // variable de récupération d'erreurs

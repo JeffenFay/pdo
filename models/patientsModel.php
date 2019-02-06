@@ -14,9 +14,6 @@ class patients extends database {
     
     public function __construct() {
         parent::__construct();
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
     }
     
     // Controle des doublons 
@@ -106,7 +103,7 @@ class patients extends database {
      */
     public function deletePatient() {
         $sql = $this->database->prepare('DELETE FROM patients WHERE id = :idPatient');
-        $sql->bindValue(':idPatient', $this->id, PDO::PARAM_STR);
+        $sql->bindValue(':idPatient', $this->id, PDO::PARAM_INT);
         return $sql->execute();
     }
     
@@ -124,7 +121,7 @@ class patients extends database {
 
     public function __destruct() {
         parent::__destruct();
-//        session_destroy();
+//       session_destroy();
     }
 }
 ?>

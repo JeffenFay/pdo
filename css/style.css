@@ -45,16 +45,12 @@ body {
 .table {
     background-color: lightgrey;
     table-layout: fixed;
-    width: 55rem; 
 }
 #requiredField .btn {
     margin-bottom: 0;
 }
 .alert {
     margin-top: 1rem;
-}
-#searchBtn{
-    margin-left: -.5rem;
 }
 .btnPagin{
     margin: 0;
@@ -63,16 +59,4 @@ body {
 .pageNum{
   font-weight: bold;
   font-size: 1rem;
-}
-.numberCircle {
-  border-radius: 15%;
-  width: 1.8rem;
-  height: 1.8rem;
-  padding: .2rem;
-  background: #fff;
-  border: .2rem solid #666;
-  color: #666;
-  text-align: center;
-  font-size: 1rem;
-  font-weight: bold;
 }

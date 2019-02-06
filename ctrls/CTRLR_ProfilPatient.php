@@ -10,10 +10,10 @@ $rdvOBJ = new appointments();
 $idExist = false;
 $rdvExist = false;
 // SESSION initialise la session si elle n'est pas remplie
-$_SESSION['patient']=isset($_SESSION['patient']) ? $_SESSION['patient'] : array();
+$_SESSION['id_patient']=isset($_SESSION['id_patient']) ? $_SESSION['id_patient'] : array();
 // vérifie si l'id est présent dans la session
-if(array_key_exists($patientsOBJ->id, $_SESSION['patient'])){
-    $patientsOBJ->id = $_SESSION['patient'][$patientsOBJ->id]; // affecte l'id de l'URL à l'attribut $id
+if(isset($_SESSION['id_patient'])){
+    $patientsOBJ->id = $_SESSION['id_patient']; // affecte l'id de l'URL à l'attribut $id
     $arrayPatient = $patientsOBJ->displayInfoPatient(); // exécute la requête 
     if ($arrayPatient === false) { // si il y a une erreur dans l'exécution de la requête
         $idExist = false; // passe la variable à false et cache le profil

@@ -1,4 +1,7 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 // ROUTER servant à la redirection des pages pour le modèle MVC
 $request = $_SERVER['REQUEST_URI'];
 
@@ -36,7 +39,7 @@ switch ($request) {
     case '/ajout-rendezvous.php' :
         require __DIR__ . '/views/ajout-rendezvous.php';
         break;
-    default: 
+    default:
         require __DIR__ . '/views/errors/error_404.php';
         break;
 }

@@ -8,10 +8,10 @@ $link = 'liste-patients.php';
 $successPage = 'Patient modifié';
 $linkText = 'des patients';
 // SESSIONS initialise la session si elle n'est pas remplie
-$_SESSION['patient']=isset($_SESSION['patient']) ? $_SESSION['patient'] : array();
+$_SESSION['id_patient']=isset($_SESSION['id_patient']) ? $_SESSION['id_patient'] : array();
 // vérifie si l'id est passée en paramètre dans l'URL
-if(array_key_exists($patientsOBJ->id, $_SESSION['patient'])){
-    $patientsOBJ->id = $_SESSION['patient'][$patientsOBJ->id]; // affecte l'id de l'URL à l'attribut $id par la méthode $_GET
+if(isset($_SESSION['id_patient'])){
+    $patientsOBJ->id = $_SESSION['id_patient']; // affecte l'id de l'URL à l'attribut $id par la méthode $_GET
     $arrayProfilPatient = $patientsOBJ->displayInfoPatient(); // exécute la requête via la méthode de l'objet patients, pour afficher le profil du  patient
 }
 // variable de récupération d'erreurs
